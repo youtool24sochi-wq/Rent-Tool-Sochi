@@ -51,7 +51,7 @@ export default function HomeProductCard({ product }: Props) {
 
       <div className={styles.thumbWrap}>
         <Image
-          src={product.main_image ? `https://rts.badk.xyz${product.main_image}` : noPhoto}
+          src={product.main_image ? `https://api.renttoolspeed.ru${product.main_image}` : noPhoto}
           alt={product.name}
           fill
           priority

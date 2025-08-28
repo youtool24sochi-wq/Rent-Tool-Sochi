@@ -182,7 +182,7 @@ export default function CatalogDetail() {
     const header = 'С вами поделились инструментом:'
     const namePrice = [name, priceStr].filter(Boolean).join(' ')
     const text = [header, namePrice, url].filter(Boolean).join('\n')
-    const imgSrc = (catalog?.main_image || (catalog?.images && catalog.images[0])) ? `https://rts.badk.xyz${catalog?.main_image || catalog?.images?.[0]}` : ''
+    const imgSrc = (catalog?.main_image || (catalog?.images && catalog.images[0])) ? `https://api.renttoolspeed.ruspeed.ru${catalog?.main_image || catalog?.images?.[0]}` : ''
 
     try {
       if (typeof navigator !== 'undefined' && 'share' in navigator) {
@@ -238,7 +238,7 @@ export default function CatalogDetail() {
                 images.map((item, index) => (
                   <div key={index} className={styles.imgWrap}>
                     <Image
-                      src={`https://rts.badk.xyz${item}`}
+                      src={`https://api.renttoolspeed.ruspeed.ru${item}`}
                       alt={catalog.name || 'Изображение инструмента'}
                       className={styles.image}
                       sizes="100vw"

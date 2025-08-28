@@ -115,7 +115,7 @@ export default function Profile() {
 
     if (!a) return null
 
-    return /^https?:\/\//.test(a) ? a : `https://rts.badk.xyz${a}`
+    return /^https?:\/\//.test(a) ? a : `https://api.renttoolspeed.ruspeed.ru${a}`
   }, [user?.avatar])
 
   const loadUserIndividual = React.useCallback(async () => {

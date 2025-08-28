@@ -54,7 +54,7 @@ function CatalogProductCard({ product, onAddToCart, onToggleFavorite, favPending
 
       <div className={styles.thumbWrap}>
         <Image
-          src={product.main_image ? `https://rts.badk.xyz${product.main_image}` : noPhoto}
+          src={product.main_image ? `https://api.renttoolspeed.ru${product.main_image}` : noPhoto}
           alt={product.name}
           fill
           unoptimized
