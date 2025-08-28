@@ -1,0 +1,12 @@
+.dateField :global(.ant-form-item-row){
+    display: initial !important;
+}
+
+.dateField :global(.ant-form-item-row .ant-form-item-label){
+    text-align: left !important;
+} 
+
+.dateField{
+    margin: 0px !important;
+    margin-bottom: 0px !important;
+}

@@ -1,0 +1,114 @@
+.btn {
+  position: fixed !important;
+  z-index: 1000 !important;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  width: 64px !important;
+  height: 64px !important;
+  background: linear-gradient(135deg, #f97316 0%, #ffb74a 100%) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: none !important;
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.35) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 12px 28px rgba(249, 115, 22, 0.5) !important;
+}
+
+.popover {
+  padding: 0 !important;
+}
+
+.card {
+  width: 220px;
+  padding: 1rem 1.25rem;
+  border: 1px solid #f9731618;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.header {
+  margin-bottom: 0.5rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  animation: pulse 1.4s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.3;
+  }
+}
+
+.title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.row {
+  font-size: 0.875rem;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.links {
+  margin-bottom: 0.75rem;
+}
+
+.iconLink {
+  font-size: 1.1rem;
+  color: #374151;
+  transition: color 0.2s ease;
+}
+
+.iconLink:hover:first-child {
+  color: #22c55e;
+}
+
+.iconLink:hover:last-child {
+  color: #0ea5e9;
+}
+
+.mail {
+  font-size: 0.75rem;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease;
+}
+
+.mail:hover {
+  color: #f97316;
+}
+
+.popover :global(.ant-popover-content .ant-popover-inner .ant-popover-inner-content div) {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.popover :global(.ant-popover-content .ant-popover-inner) {
+    padding: 0px !important;
+}
+
+.phone{
+    color: #f97316 !important;
+    font-size: 15px;
+}

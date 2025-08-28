@@ -1,0 +1,11 @@
+.autoCompleteField :global(.ant-form-item-row){
+    display: initial !important;
+}
+
+.autoCompleteField :global(.ant-form-item-row .ant-form-item-label){
+    text-align: left !important;
+} 
+
+.autoCompleteField{
+    margin: 0px !important;
+}

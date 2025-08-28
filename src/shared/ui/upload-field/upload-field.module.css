@@ -1,0 +1,15 @@
+.uploadField :global(.ant-form-item-row){
+    display: initial !important;
+}
+
+.uploadField :global(.ant-form-item-row .ant-form-item-label){
+    text-align: left !important;
+} 
+
+.uploadField{
+    margin: 0px !important;
+}
+
+.uploadField{
+    margin: 0px !important;
+}

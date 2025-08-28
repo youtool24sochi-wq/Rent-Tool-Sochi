@@ -1,0 +1,3 @@
+{
+  "installCommand": "yarn install --frozen-lockfile --network-timeout 600000 --network-concurrency 1 --prefer-offline"
+}

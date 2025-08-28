@@ -1,0 +1,5 @@
+@media screen and (max-width: 835px) {
+    .breadcrumb{
+        font-size: 13px !important;
+    }
+}

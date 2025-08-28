@@ -1,0 +1,34 @@
+.textField {
+    margin-bottom: 0px !important;
+}
+
+.textField :global(.ant-form-item-row){
+    display: initial !important;
+}
+
+.textField :global(.ant-form-item-row .ant-form-item-label){
+    text-align: left !important;
+}
+
+.textField :global(.ant-form-item-row .ant-form-item-label label) {
+    color: #6b7280 !important;
+}
+
+.textField :global(.ant-form-item-control .ant-form-item-control-input .ant-form-item-control-input-content input) {
+    color: #000 !important;
+}
+
+.textField :global(.ant-form-item-control .ant-form-item-control-input .ant-form-item-control-input-content input::placeholder) {
+    color: #f97316 !important;
+}
+
+.textField__description {
+    margin-bottom: 8px;
+    color: #6C6C6C;
+}
+
+.tooltip :global(.ant-tooltip-inner) {
+  font-size: 12px;
+  line-height: 1.2;
+  padding: 6px 10px;
+}

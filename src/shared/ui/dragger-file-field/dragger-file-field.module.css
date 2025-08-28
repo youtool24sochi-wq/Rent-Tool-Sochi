@@ -1,0 +1,19 @@
+.draggerField :global(.ant-form-item-row){
+    display: initial !important;
+}
+
+.draggerField :global(.ant-form-item-row .ant-form-item-label){
+    text-align: left !important;
+}
+
+.draggerField :global(.ant-form-item-row .ant-form-item-control .ant-form-item-control-input .ant-form-item-control-input-content .ant-select .ant-select-selector){
+    padding: 10px 8px !important;
+}
+
+.draggerField{
+    margin: 0px !important;
+}
+
+.selectFileField{
+    margin: 0 !important;
+}

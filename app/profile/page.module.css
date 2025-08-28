@@ -1,0 +1,541 @@
+.page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff7ed 0%, #ffffff 55%, #f3f4f6 100%);
+  padding: 24px 12px 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  padding: 0 8px;
+}
+
+.bgOrbs {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.bgOrbs circle {
+  fill: #f97316;
+  fill-opacity: 0.12;
+}
+
+.ellipseLeft,
+.ellipseRight {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(0.2px);
+}
+
+.ellipseLeft {
+  left: 0;
+  top: 48px;
+  width: 96px;
+  height: 70%;
+  opacity: 0.28;
+  background: radial-gradient(ellipse at center, rgba(249, 115, 22, 0.18) 0%, rgba(249, 115, 22, 0.04) 70%);
+  border-radius: 50%;
+}
+
+.ellipseRight {
+  right: 0;
+  top: 120px;
+  width: 88px;
+  height: 60%;
+  opacity: 0.2;
+  background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.13) 0%, rgba(249, 115, 22, 0.04) 70%);
+  border-radius: 50%;
+}
+
+.hero {
+  border-radius: 20px !important;
+  background: linear-gradient(135deg, #ffffff 0%, #fff7ed 60%, #ffedd5 100%) !important;
+  border: 1px solid rgba(249, 115, 22, 0.2) !important;
+  box-shadow: 0 10px 24px rgba(249, 115, 22, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.65) !important;
+}
+
+.heroHead {
+  gap: 10px !important;
+}
+
+.heroIcon {
+  font-size: 22px !important;
+  color: #f97316 !important;
+}
+
+.heroTitle {
+  margin: 0 !important;
+}
+
+.softTag {
+  border-radius: 999px !important;
+  background: #fed7aa !important;
+  color: #7c2d12 !important;
+  border-color: transparent !important;
+}
+
+.idTag {
+  border-radius: 999px !important;
+  background: #f3f4f6 !important;
+  color: #111827 !important;
+  border-color: transparent !important;
+}
+
+.avatar :global(.ant-avatar) {
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.15) !important;
+}
+
+.userCard,
+.progressCard,
+.blockCard,
+.orderCard,
+.favoriteCard,
+.filesCard,
+.blockCardWide {
+  border-radius: 16px !important;
+  border: 1px solid rgba(249, 115, 22, 0.15) !important;
+  background: #ffffff !important;
+}
+
+.filesCard {
+  background: linear-gradient(135deg, #fff7ed 0%, #ffffff 100%) !important;
+}
+
+.blockCardWide {
+  padding: 18px !important;
+}
+
+.blockTitle {
+  margin: 0 0 8px 0 !important;
+  color: #f97316 !important;
+}
+
+.blockTitleSmall {
+  margin: 0 !important;
+  color: #f97316 !important;
+}
+
+.subMuted {
+  color: #6b7280 !important;
+}
+
+.badgeDark {
+  background: #111827 !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  border-radius: 999px !important;
+}
+
+.progress :global(.ant-progress-bg) {
+  background: #f97316 !important;
+  border-radius: 999px !important;
+}
+
+.progress :global(.ant-progress-inner) {
+  background: #f3f4f6 !important;
+  border-radius: 999px !important;
+}
+
+.statCard {
+  text-align: center !important;
+  background: linear-gradient(180deg, #ffffff 0%, #fff7ed 100%) !important;
+  border: 1px solid rgba(249, 115, 22, 0.15) !important;
+}
+
+.statIcon {
+  font-size: 28px !important;
+  color: #f97316 !important;
+}
+
+.statIconMuted {
+  font-size: 28px !important;
+  color: #9ca3af !important;
+}
+
+.statTitle {
+  margin: 4px 0 0 0 !important;
+}
+
+.btnPrimary {
+  border-radius: 12px !important;
+  background: #f97316 !important;
+  border-color: #f97316 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+.btnPrimary:hover {
+  background: #ea580c !important;
+  border-color: #ea580c !important;
+  color: #ffffff !important;
+}
+
+.btnGhost {
+  border-radius: 12px !important;
+  background: #ffffff !important;
+  color: #f97316 !important;
+  border-color: #f97316 !important;
+  box-shadow: none !important;
+}
+
+.btnGhost:hover {
+  color: #ea580c !important;
+  border-color: #ea580c !important;
+  background: #ffffff !important;
+}
+
+.btnDark {
+  border-radius: 12px !important;
+  background: #111827 !important;
+  color: #ffffff !important;
+  border-color: #111827 !important;
+}
+
+.btnDark:hover {
+  background: #0b0d12 !important;
+  border-color: #0b0d12 !important;
+}
+
+.btnWhite {
+  border-radius: 12px !important;
+  background: #f9fafb !important;
+  color: #111827 !important;
+  border-color: #e5e7eb !important;
+}
+
+.btnWhite:hover {
+  background: #ffffff !important;
+  border-color: #d1d5db !important;
+}
+
+.tagOrange {
+  background: #ffedd5 !important;
+  color: #7c2d12 !important;
+  border-color: transparent !important;
+  cursor: pointer;
+}
+
+.tagSoft {
+  background: #fef3c7 !important;
+  color: #92400e !important;
+  border-color: transparent !important;
+}
+
+.tagGood {
+  background: #d1fae5 !important;
+  color: #065f46 !important;
+  border-color: transparent !important;
+}
+
+.tagMuted {
+  background: #f3f4f6 !important;
+  color: #374151 !important;
+  border-color: transparent !important;
+}
+
+.orderTitle {
+  font-weight: 600 !important;
+  color: #111827 !important;
+}
+
+.thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px !important;
+  border: 1px solid #fde7d6 !important;
+  background: #fff7ed !important;
+  object-fit: cover;
+}
+
+.favoriteCard {
+  background: linear-gradient(135deg, #ffffff 0%, #fff7ed 100%) !important;
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.08) !important;
+}
+
+.favoriteRow {
+  width: 100%;
+  gap: 14px !important;
+  align-items: center !important;
+}
+
+.favoriteImg {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px !important;
+  border: 1px solid rgba(249, 115, 22, 0.18) !important;
+  background: #fff7ed !important;
+  object-fit: cover;
+  flex: 0 0 64px !important;
+}
+
+.favoriteText {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+.favoriteTitle {
+  font-weight: 600 !important;
+  color: #111827 !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+}
+
+.favoriteDesc {
+  color: #6b7280 !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+}
+
+.progressBarWrap {
+  width: 100%;
+  height: 12px;
+  background: #f3f4f6;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  background: #f97316;
+  border-radius: 999px;
+  transition: width .3s ease;
+}
+
+.statusOrange {
+  color: #ea580c !important;
+}
+
+.settingRow {
+  padding: 8px 0;
+  border-top: 1px dashed rgba(17, 24, 39, 0.12);
+  margin-top: 6px;
+}
+
+.settingTitle {
+  font-weight: 600;
+  color: #111827;
+}
+
+.tabsWrap {
+  margin-top: 16px;
+}
+
+.tabs :global(.ant-tabs-nav) {
+  margin-right: 12px !important;
+}
+
+.tabs :global(.ant-tabs-tab) {
+  border-radius: 12px !important;
+  padding: 10px 12px !important;
+}
+
+.tabs :global(.ant-tabs-tab-active) {
+  background: rgba(249, 115, 22, 0.10) !important;
+}
+
+.tabs :global(.ant-tabs-ink-bar) {
+  background: #f97316 !important;
+}
+
+.table :global(.ant-table-thead > tr > th) {
+  background: #fff7ed !important;
+  color: #6b7280 !important;
+}
+
+.tableScroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.editCard {
+  border-radius: 14px;
+  border: 1px dashed rgba(249, 115, 22, 0.4);
+  background: linear-gradient(135deg, #fffdf8 0%, #fff7ed 100%);
+  padding: 12px;
+}
+
+.editHead {
+  margin-bottom: 8px;
+}
+
+.editForm :global(.ant-form-item) {
+  margin-bottom: 10px !important;
+}
+
+.editBar {
+  margin-top: 4px;
+}
+
+.helpCard {
+  background: linear-gradient(135deg, #ffffff 0%, #fff7ed 70%, #ffedd5 100%) !important;
+  border: 1px solid rgba(249, 115, 22, 0.18) !important;
+}
+
+.helpRow {
+  min-height: 64px;
+}
+
+.contactBtns a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none !important;
+}
+
+.contactBtn {
+  padding: 10px 14px !important;
+  border-radius: 999px !important;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.contactBtns :global(svg) {
+  font-size: 18px;
+}
+
+@media (max-width: 767px) {
+  .page {
+    padding: 16px 8px 40px;
+  }
+  .helpRow {
+    align-items: flex-start !important;
+  }
+  .contactBtn {
+    width: 100%;
+    justify-content: center;
+  }
+  .editHead{
+    flex-direction: column !important;
+  }
+  .tagMuted{
+    font-size: 8px !important; 
+  }
+  .userRow {
+    flex-direction: column !important;
+    text-align: center !important;
+    align-items: center;
+  }
+  .bgOrbs {
+    opacity: 0.18;
+  }
+  .ellipseLeft {
+    width: 64px;
+    height: 60%;
+    opacity: 0.22;
+  }
+  .ellipseRight {
+    width: 64px;
+    height: 48%;
+    opacity: 0.16;
+  }
+  .hero {
+    border-radius: 16px !important;
+  }
+  .heroHead {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px !important;
+  }
+  .heroHeadRight {
+    width: 100%;
+  }
+  .heroHeadLeft :global(.ant-typography) {
+    font-size: 20px !important;
+    line-height: 1.2 !important;
+  }
+  .userText :global(.ant-typography) {
+    font-size: 16px !important;
+  }
+  .ctaRow {
+    width: 100%;
+  }
+  .ctaRow :global(.ant-btn) {
+    width: 100%;
+  }
+  .desc :global(.ant-descriptions-item-container) {
+    padding: 6px 0 !important;
+  }
+  .statCard {
+    padding: 12px !important;
+  }
+  .tabs :global(.ant-tabs-nav) {
+    margin: 0 0 12px 0 !important;
+  }
+  .tabs :global(.ant-tabs-nav-wrap) {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  .tabs :global(.ant-tabs-tab) {
+    padding: 8px 10px !important;
+    margin: 0 6px 0 0 !important;
+    white-space: nowrap !important;
+  }
+  .orderHead {
+    align-items: flex-start;
+  }
+  .thumb {
+    width: 56px;
+    height: 56px;
+  }
+  .favoriteRow {
+    flex-wrap: wrap !important;
+  }
+  .favoriteImg {
+    width: 56px !important;
+    height: 56px !important;
+  }
+  .favoriteText {
+    width: calc(100% - 72px) !important;
+  }
+  .favoriteRow :global(.ant-btn) {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    order: 3 !important;
+    margin-top: 8px !important;
+  }
+  .favoriteDesc {
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+  .favoriteCard :global(.ant-btn) {
+    width: 100%;
+  }
+  .fileHead {
+    flex-wrap: wrap;
+  }
+  .blockTitle,
+  .blockTitleSmall {
+    font-size: 14px !important;
+  }
+  .table :global(.ant-table) {
+    font-size: 13px !important;
+  }
+  .editCard {
+    padding: 10px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .wrap {
+    padding: 0 8px;
+  }
+  .tabs :global(.ant-tabs-nav) {
+    margin-right: 8px !important;
+  }
+  .thumb,
+  .favoriteImg {
+    width: 60px;
+    height: 60px;
+  }
+}

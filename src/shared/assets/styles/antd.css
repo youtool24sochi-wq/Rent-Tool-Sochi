@@ -1,0 +1,7 @@
+.ant-btn-primary {
+  background-image: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+}
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+  background-image: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+}

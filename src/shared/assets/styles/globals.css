@@ -1,0 +1,42 @@
+html, body {
+  max-width: 100vw;
+  height: 100%;
+}
+
+.layout-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page-content {
+  flex: 1 0 auto;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+.btnOrange {
+  border-radius: 9999px !important;
+  background: linear-gradient(90deg, #f97316 0%, #ffb74a 100%) !important;
+  transition: background-position .35s, transform .35s, box-shadow .35s !important;
+}
+
+.btnOrange:hover {
+  background-position: right center !important;
+  transform: translateY(-2px) !important;
+}

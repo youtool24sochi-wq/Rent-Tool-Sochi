@@ -1,0 +1,15 @@
+.sliderField :global(.ant-form-item-row) {
+  display: initial !important;
+}
+
+.sliderField :global(.ant-form-item-label) {
+  text-align: left !important;
+}
+
+.sliderField :global(.ant-slider) {
+  padding: 10px 8px !important;
+}
+
+.sliderField {
+  margin: 0 !important;
+}

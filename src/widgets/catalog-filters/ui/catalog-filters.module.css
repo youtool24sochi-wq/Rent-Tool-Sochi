@@ -1,0 +1,45 @@
+
+.sidebar {
+  position: sticky;
+  top: 72px;
+  align-self: flex-start;
+  background: #f3f4f6;
+  border-radius: 1rem;
+  padding: 24px;
+  width: 280px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mobileBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: #f3f4f6;
+}
+
+.btn_submit {
+  color: #fff !important;
+  border: none !important;
+  font-weight: bold !important;
+  background-size: 200% auto !important;
+  cursor: pointer !important;
+  border-radius: 0.5rem !important;
+}
+
+
+.title h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.title {
+    margin-bottom: 1rem;
+}

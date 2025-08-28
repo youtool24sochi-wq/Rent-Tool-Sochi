@@ -1,0 +1,16 @@
+.numberField {
+    margin-bottom: 0px !important;
+}
+
+.numberField :global(.ant-form-item-row){
+    display: initial !important;
+}
+
+.numberField :global(.ant-form-item-row .ant-form-item-label){
+    text-align: left !important;
+}
+
+.numberField__description {
+    margin-bottom: 8px;
+    color: #6C6C6C;
+}

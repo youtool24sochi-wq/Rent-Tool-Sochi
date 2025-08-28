@@ -1,0 +1,232 @@
+.layout {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.carousel {
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.imgWrap {
+  width: 100%;
+  padding-top: 75%;
+  position: relative;
+}
+
+.image {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1f2937;
+  line-height: 1.2;
+}
+
+.meta {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+}
+
+.priceBlock {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.priceBlock {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.priceNew {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.priceOld {
+  font-size: 18px;
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.discountBadge {
+  background: #ff4d4f;
+  color: #fff;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.price {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #f97316;
+}
+
+.discount {
+  font-size: 1rem;
+  color: #ef4444;
+}
+
+.desc {
+  font-size: 1rem;
+  color: #374151;
+}
+
+.specs {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 1rem 0;
+}
+
+.specItem {
+  padding: 0.5rem 0 !important;
+}
+
+.specKey {
+  color: #6b7280;
+}
+
+.specVal {
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.btnPrimary {
+  width: 100%;
+  height: 56px;
+  font-size: 1.125rem;
+}
+
+.btnFavorite {
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.btnFavoriteActive {
+  color: #ff4d4f;
+}
+
+.disclaimer {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+  line-height: 1.2;
+}
+
+.shareBlock {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+}
+
+.shareLabel {
+  font-size: 0.875rem !important;
+  color: #6b7280 !important;
+}
+
+.shareBtns {
+  display: flex !important;
+  gap: 12px !important; 
+}
+
+.shareBtn {
+  border: none !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06) !important;
+  padding: 0 20px !important;
+}
+
+.shareBtn :global(span:last-child) {
+  display:  initial !important;
+  align-self: initial !important;
+}
+
+.shareBtnTg {
+  background: linear-gradient(135deg, #229ED9 0%, #2aa7e0 100%) !important;
+  color: #fff !important;
+}
+
+.shareBtnWa {
+  background: linear-gradient(135deg, #25D366 0%, #2edb6e 100%) !important;
+  color: #fff !important;
+}
+
+.shareBtnTg:hover,
+.shareBtnWa:hover {
+  filter: brightness(1.05) !important;
+}
+
+.shareBtnTg:active,
+.shareBtnWa:active {
+  transform: translateY(1px) !important;
+}
+
+.shareBtn:focus-visible {
+  outline: 2px solid rgba(0,0,0,0.12) !important;
+  outline-offset: 2px !important;
+}
+
+.favIcon{
+  color:#f97316 !important;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.5rem;
+  }
+  .price {
+    font-size: 1.5rem;
+  }
+  .btnPrimary {
+    height: 48px;
+  }
+  .shareBlock {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .shareBtns {
+    width: 100% !important;
+  }
+  .shareBtn {
+    flex: 1 !important;
+    width: 100% !important;
+  }
+}

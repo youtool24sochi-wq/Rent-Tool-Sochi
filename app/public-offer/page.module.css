@@ -1,0 +1,235 @@
+.page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff7ed 0%, #ffffff 55%, #f3f4f6 100%);
+  padding: 24px 12px 64px;
+  position: relative;
+}
+
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.ellipseLeft,
+.ellipseRight {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(0.2px);
+}
+
+.ellipseLeft {
+  left: 0;
+  top: 48px;
+  width: 96px;
+  height: 70%;
+  opacity: 0.28;
+  background: radial-gradient(ellipse at center, rgba(249, 115, 22, 0.18) 0%, rgba(249, 115, 22, 0.04) 70%);
+  border-radius: 50%;
+}
+
+.ellipseRight {
+  right: 0;
+  top: 120px;
+  width: 88px;
+  height: 60%;
+  opacity: 0.2;
+  background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.13) 0%, rgba(249, 115, 22, 0.04) 70%);
+  border-radius: 50%;
+}
+
+.hero {
+  border-radius: 20px !important;
+  background: linear-gradient(135deg, #ffffff 0%, #fff7ed 60%, #ffedd5 100%) !important;
+  border: 1px solid rgba(249, 115, 22, 0.2) !important;
+  box-shadow: 0 10px 24px rgba(249, 115, 22, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.65) !important;
+}
+
+.heroHead {
+  gap: 8px !important;
+}
+
+.heroIcon {
+  font-size: 22px !important;
+  color: #f97316 !important;
+}
+
+.heroTitle {
+  margin: 0 !important;
+}
+
+.versionTag {
+  border-radius: 999px !important;
+  background: #fed7aa !important;
+  color: #7c2d12 !important;
+  border-color: transparent !important;
+}
+
+.userCard {
+  border-radius: 16px !important;
+  border: 1px solid rgba(249, 115, 22, 0.15) !important;
+  background: #ffffff !important;
+}
+
+.filesCard {
+  border-radius: 16px !important;
+  border: 1px solid rgba(249, 115, 22, 0.15) !important;
+  background: linear-gradient(135deg, #fff7ed 0%, #ffffff 100%) !important;
+}
+
+.blockTitle {
+  margin: 0 !important;
+  color: #f97316 !important;
+}
+
+.blockTitleSmall {
+  margin: 0 !important;
+  color: #f97316 !important;
+}
+
+.userIcon {
+  color: #f97316 !important;
+}
+
+.softTag {
+  background: #fef3c7 !important;
+  color: #92400e !important;
+  border-color: transparent !important;
+  margin-left: 8px !important;
+}
+
+.desc :global(.ant-descriptions-item-label) {
+  color: #6b7280 !important;
+}
+
+.desc :global(.ant-descriptions-item-content) {
+  color: #111827 !important;
+}
+
+.btnPrimary {
+  border-radius: 12px !important;
+  background: #f97316 !important;
+  border-color: #f97316 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+.btnPrimary:hover {
+  background: #ea580c !important;
+  border-color: #ea580c !important;
+  color: #ffffff !important;
+}
+
+.btnGhost {
+  border-radius: 12px !important;
+  background: #ffffff !important;
+  color: #f97316 !important;
+  border-color: #f97316 !important;
+  box-shadow: none !important;
+}
+
+.btnGhost:hover {
+  color: #ea580c !important;
+  border-color: #ea580c !important;
+  background: #ffffff !important;
+}
+
+.offerCard {
+  margin-top: 16px !important;
+  border-radius: 16px !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(249, 115, 22, 0.12) !important;
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.08) !important;
+}
+
+.tabs :global(.ant-tabs-nav) {
+  margin-bottom: 12px !important;
+}
+
+.tabs :global(.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn) {
+  color: #f97316 !important;
+}
+
+.tabs :global(.ant-tabs-ink-bar) {
+  background: #f97316 !important;
+}
+
+.offerBody {
+  padding: 8px 0 !important;
+}
+
+.sectionTitle {
+  color: #f97316 !important;
+  margin-top: 4px !important;
+}
+
+.divider {
+  border-color: rgba(249, 115, 22, 0.15) !important;
+}
+
+.muted {
+  color: #4b5563 !important;
+}
+
+.filesPane {
+  padding: 8px 0 !important;
+}
+
+.modal :global(.ant-modal-content) {
+  border-radius: 20px !important;
+  background: rgba(255,255,255,0.95) !important;
+  border: 1px solid rgba(249, 115, 22, 0.18) !important;
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.12) !important;
+}
+
+.modal :global(.ant-modal-header) {
+  border-bottom: none !important;
+  background: transparent !important;
+}
+
+.modalIcon {
+  color: #10b981 !important;
+  font-size: 20px !important;
+}
+
+.checkbox :global(.ant-checkbox-inner) {
+  border-radius: 6px !important;
+}
+
+@media print {
+  .page {
+    background: #ffffff !important;
+    padding: 0 !important;
+  }
+
+  .ellipseLeft,
+  .ellipseRight,
+  .filesCard,
+  .softTag,
+  .btnPrimary,
+  .btnGhost,
+  .tabs :global(.ant-tabs-nav) {
+    display: none !important;
+  }
+
+  .wrap {
+    max-width: 780px !important;
+    margin: 0 auto !important;
+  }
+
+  .offerCard {
+    box-shadow: none !important;
+    border: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    max-width: 100% !important;
+  }
+  .hero {
+    border-radius: 16px !important;
+  }
+}

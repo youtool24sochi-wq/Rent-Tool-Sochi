@@ -1,0 +1,161 @@
+.page {
+  min-height: 100vh !important;
+  background: linear-gradient(135deg, #fed7aa 0%, #fff7ed 40%, #f3f4f6 100%) !important;
+}
+
+.content {
+  max-width: 980px !important;
+  margin: 0 auto !important;
+  padding: 32px 16px 64px !important;
+  position: relative !important;
+}
+
+.titleCenter {
+  text-align: center !important;
+  margin-bottom: 12px !important;
+}
+
+.heroCard {
+  border-radius: 20px !important;
+  background: linear-gradient(135deg, #ffffff 0%, #fff7ed 60%, #ffedd5 100%) !important;
+  box-shadow:
+    0 10px 24px rgba(249, 115, 22, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65) !important;
+  border: 1px solid rgba(249, 115, 22, 0.20) !important;
+}
+
+.benefitsCard {
+  background: linear-gradient(90deg, #ffedd5 0%, #fff7ed 50%, #ffffff 100%) !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(249, 115, 22, 0.30) !important;
+}
+
+.sectionCard {
+  border-radius: 16px !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(249, 115, 22, 0.12) !important;
+}
+
+.sectionCardSoft {
+  border-radius: 16px !important;
+  background: linear-gradient(90deg, #ffedd5 0%, #fff7ed 50%, #ffffff 100%) !important;
+  border: 1px solid rgba(249, 115, 22, 0.18) !important;
+}
+
+.sectionTitle {
+  color: #f97316 !important;
+  margin-bottom: 8px !important;
+}
+
+.bulletList {
+  padding-left: 18px !important;
+  margin: 8px 0 8px !important;
+  color: #1f2937 !important;
+  line-height: 1.6 !important;
+}
+
+.bulletList li {
+  margin-bottom: 6px !important;
+}
+
+.bulletListSm {
+  padding-left: 18px !important;
+  margin: 4px 0 0 !important;
+  color: #374151 !important;
+  line-height: 1.6 !important;
+}
+
+.muted {
+  color: #4b5563 !important;
+}
+
+.iconAccent {
+  font-size: 18px !important;
+  color: #f97316 !important;
+}
+
+.link {
+  color: #f97316 !important;
+}
+
+.link:hover {
+  text-decoration: underline !important;
+}
+
+.privacyCard {
+  border-radius: 16px !important;
+  background: #f9fafb !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+.tagSoft {
+  background: #fed7aa !important;
+  color: #7c2d12 !important;
+  border-color: transparent !important;
+}
+
+.faqWrap {
+  margin-top: 16px !important;
+}
+
+.faqCard {
+  border-radius: 16px !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(249, 115, 22, 0.10) !important;
+}
+
+.collapse :global(.ant-collapse-item) {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+.collapse :global(.ant-collapse-item + .ant-collapse-item) {
+  margin-top: 8px !important;
+}
+
+.ctaBar {
+  margin: 24px 0 0 !important;
+  padding: 16px !important;
+  border-radius: 16px !important;
+  background: linear-gradient(90deg, #fff7ed 0%, #ffffff 50%, #ffedd5 100%) !important;
+  border: 1px solid rgba(249, 115, 22, 0.12) !important;
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.08) !important;
+}
+
+.ctaTitle {
+  margin: 0 !important;
+}
+
+.ellipseLeft,
+.ellipseRight {
+  position: absolute !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+  filter: blur(0.2px) !important;
+}
+
+.ellipseLeft {
+  left: -8px !important;
+  top: 48px !important;
+  width: 90px !important;
+  height: 70% !important;
+  opacity: 0.28 !important;
+  background: radial-gradient(ellipse at center, rgba(249, 115, 22, 0.18) 0%, rgba(249, 115, 22, 0.04) 70%) !important;
+  border-radius: 50% !important;
+}
+
+.ellipseRight {
+  right: -8px !important;
+  top: 120px !important;
+  width: 80px !important;
+  height: 60% !important;
+  opacity: 0.2 !important;
+  background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.13) 0%, rgba(249, 115, 22, 0.04) 70%) !important;
+  border-radius: 50% !important;
+}
+
+@media (max-width: 640px) {
+  .content { padding: 20px 12px 56px !important; }
+  .heroCard { border-radius: 16px !important; }
+  .ctaBar { text-align: center !important; }
+}
