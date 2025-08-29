@@ -543,22 +543,32 @@ export default function Checkout() {
                   </Radio.Group>
                 </Form.Item>
                 {paymentMethod === 'online' && (
-                  <Form.Item label="Чек об оплате" required>
-                    <DraggerFileField
-                      beforeUpload={() => false}
-                      maxCount={1}
-                      onChange={(info) => {
-                        const f = info?.fileList?.[0]?.originFileObj as File | undefined
+                  <>
+                    <Form.Item label="Чек об оплате" required>
+                      <DraggerFileField
+                        beforeUpload={() => false}
+                        maxCount={1}
+                        onChange={(info) => {
+                          const f = info?.fileList?.[0]?.originFileObj as File | undefined
 
-                        setReceiptFile(f || null)
-                      }}
-                      onRemove={() => {
-                        setReceiptFile(null)
+                          setReceiptFile(f || null)
+                        }}
+                        onRemove={() => {
+                          setReceiptFile(null)
 
-                        return true
-                      }}
-                    />
-                  </Form.Item>
+                          return true
+                        }}
+                      />
+                    </Form.Item>
+                    <Form.Item label={false}>
+                      <div className={styles.requisites}>
+                        <p><span>Получатель:</span> Валерий Николаевич</p>
+                        <p><span>Банк:</span> Озон Банк</p>
+                        <p><span>Номер счёта:</span> 89996555139</p>
+                        <p><span>Назначение:</span> Оплата заказа</p>
+                      </div>
+                    </Form.Item>
+                  </>
                 )}
               </Form>
             </Space>

@@ -75,7 +75,7 @@ function CatalogProductCard({ product, onAddToCart, onToggleFavorite, favPending
 
       <div className={styles.body}>
         <h3 className={styles.title}>{product.name}</h3>
-        {product.description && <p className={styles.desc}>{product.description}</p>}
+        {product.description ? <p className={styles.desc}>{product.description}</p> : <p style={{ color: 'transparent' }} className={styles.desc}>Нету описание</p>}
 
         <div className={styles.priceRow}>
           {hasDiscount ? (

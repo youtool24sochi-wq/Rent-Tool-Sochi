@@ -147,7 +147,7 @@ export default function Home() {
         animate="show"
         variants={stagger}
       >
-        <video className={styles.videoBg} src={`https://api.renttoolspeed.ruspeed.ru${video?.video_url.video_url}`} autoPlay loop muted playsInline />
+        <video className={styles.videoBg} src={`https://api.renttoolspeed.ru${video?.video_url.video_url}`} autoPlay loop muted playsInline />
         <div className={styles.overlay} />
 
         <div className={styles.particles}>

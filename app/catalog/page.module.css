@@ -1,11 +1,102 @@
+.page {
+  position: relative;
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 600px at -10% 20%, rgba(249, 115, 22, 0.08) 0%, rgba(249, 115, 22, 0) 60%),
+    radial-gradient(900px 520px at 110% 60%, rgba(56, 189, 248, 0.10) 0%, rgba(56, 189, 248, 0) 65%),
+    linear-gradient(135deg, #fff7ed 0%, #ffedd5 38%, #f1f5f9 100%);
+}
+
+.bgLayer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 247, 237, 0.35) 50%, rgba(255, 237, 213, 0.45) 100%);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ellipses { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.ellipseLeft,
+.ellipseRight {
+  position: absolute;
+  filter: blur(.4px);
+  border-radius: 50%;
+  opacity: .35;
+}
+.ellipseLeft {
+  left: -24px;
+  top: 60px;
+  width: 120px;
+  height: 70%;
+  background: radial-gradient(ellipse at center, rgba(249, 115, 22, 0.16) 0%, rgba(249, 115, 22, 0.04) 70%);
+}
+.ellipseRight {
+  right: -16px;
+  top: 160px;
+  width: 100px;
+  height: 60%;
+  background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.12) 0%, rgba(249, 115, 22, 0.04) 70%);
+}
+
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.particles svg {
+  position: absolute;
+  fill: #f97316;
+  opacity: .085;
+  animation: spin 28s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes float {
+  0%   { transform: translateY(0) rotate(var(--rot, 0deg)); }
+  50%  { transform: translateY(-12px) rotate(var(--rot, 0deg)); }
+  100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+}
+
+.tool1 { top: 10%; left: 8%; animation-duration: 22s; }
+.tool2 { top: 22%; right: 12%; animation-duration: 32s; animation-direction: reverse; }
+.tool3 { top: 46%; left: 18%; animation-duration: 26s; }
+.tool4 { top: 64%; right: 20%; animation-duration: 34s; animation-direction: reverse; }
+.tool5 { top: 28%; left: 42%; animation-duration: 24s; }
+.tool6 { top: 74%; left: 8%; animation-duration: 30s; }
+.tool7 { top: 14%; right: 34%; animation-duration: 28s; animation-direction: reverse; }
+.tool8 { top: 58%; left: 58%; animation-duration: 36s; }
+.tool9 { top: 36%; right: 44%; animation-duration: 25s; }
+.tool10 { bottom: 8%; left: 36%; animation-duration: 40s; animation-direction: reverse; }
+.tool11 { top: 8%; right: 6%; animation-duration: 38s; }
+.tool12 { bottom: 12%; right: 16%; animation-duration: 33s; }
+
+/* лёгкое парение для части иконок */
+.tool3, .tool5, .tool8, .tool11 {
+  animation: spin 28s linear infinite, float 6.5s ease-in-out infinite;
+  --rot: 0deg;
+}
+.tool2, .tool4, .tool7, .tool10 {
+  animation: spin 30s linear infinite reverse, float 7.5s ease-in-out infinite;
+  --rot: 0deg;
+}
+
 .layout {
+  position: relative;
+  z-index: 1;
   display: flex;
   gap: 24px;
+}
+
+.content { 
+  flex: 1; 
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
 }
-
-.content { flex: 1; }
 
 .search { margin-bottom: 24px; }
 
@@ -55,9 +146,7 @@
 }
 
 .searchButton:disabled { opacity: .6; cursor: default; }
-
 .searchButton:hover { filter: brightness(1.05); }
-
 .searchButton:active { transform: translateY(1px); }
 
 .searchButton :global(.anticon) {
@@ -65,16 +154,15 @@
   color: #fff;
 }
 
-.pagination {
-  margin-top: 24px;
-  text-align: center;
-}
+.pagination { margin-top: 24px; text-align: center; }
 
 .found {
   font-size: 0.875rem;
   color: #6b7280;
   display: none;
 }
+
+.left { z-index: 1; }
 
 @media (max-width: 992px) {
   .layout { flex-direction: column; }
@@ -97,4 +185,11 @@
     height: 56px;
     border-radius: 10px;
   }
+
+  .particles svg { opacity: .09; }
+  .tool11 { display: none; }
+}
+
+@media (max-width: 640px) {
+  .tool7, .tool8, .tool10, .tool12 { display: none; }
 }

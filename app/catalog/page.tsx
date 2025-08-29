@@ -189,9 +189,7 @@ export default function Catalog() {
       try {
         setFavBusy(tool_id, true)
         if (isFav) {
-          const dataToSend = {
-            tool_id: String(tool_id),
-          }
+          const dataToSend = { tool_id: String(tool_id) }
           const res = await FavoriteDELETE(dataToSend)
 
           if (res?.status === 200 || res?.statusText === 'OK') {
@@ -268,7 +266,73 @@ export default function Catalog() {
   if (!clientReady || !initialLoaded) return <Loader />
 
   return (
-    <>
+    <div className={styles.page}>
+      <div className={styles.bgLayer} aria-hidden />
+      <div className={styles.ellipses} aria-hidden>
+        <div className={styles.ellipseLeft} />
+        <div className={styles.ellipseRight} />
+      </div>
+
+      <div className={styles.particles} aria-hidden>
+        <svg className={styles.tool1} width="64" height="64" viewBox="0 0 64 64">
+          <rect x="6" y="26" width="30" height="12" rx="3" />
+          <rect x="34" y="29" width="8" height="6" rx="1" />
+          <circle cx="48" cy="32" r="6" />
+        </svg>
+        <svg className={styles.tool2} width="54" height="54" viewBox="0 0 54 54">
+          <rect x="8" y="26" width="30" height="8" rx="2" />
+          <rect x="34" y="10" width="6" height="28" rx="2" />
+          <rect x="20" y="8" width="22" height="8" rx="2" />
+        </svg>
+        <svg className={styles.tool3} width="60" height="60" viewBox="0 0 60 60">
+          <circle cx="24" cy="30" r="12" />
+          <rect x="34" y="28" width="18" height="4" rx="2" />
+        </svg>
+        <svg className={styles.tool4} width="58" height="58" viewBox="0 0 58 58">
+          <rect x="10" y="14" width="26" height="10" rx="2" />
+          <rect x="20" y="24" width="6" height="24" rx="2" />
+          <rect x="18" y="48" width="10" height="6" rx="2" />
+        </svg>
+        <svg className={styles.tool5} width="56" height="56" viewBox="0 0 56 56">
+          <rect x="10" y="20" width="36" height="8" rx="2" />
+          <circle cx="22" cy="24" r="3" />
+          <circle cx="34" cy="24" r="3" />
+        </svg>
+        <svg className={styles.tool6} width="48" height="48" viewBox="0 0 48 48">
+          <rect x="20" y="8" width="8" height="26" rx="2" />
+          <polygon points="24,36 18,44 30,44" />
+        </svg>
+        <svg className={styles.tool7} width="62" height="62" viewBox="0 0 62 62">
+          <rect x="8" y="26" width="30" height="10" rx="2" />
+          <rect x="32" y="16" width="6" height="10" rx="2" />
+          <rect x="38" y="28" width="16" height="6" rx="2" />
+        </svg>
+        <svg className={styles.tool8} width="46" height="46" viewBox="0 0 46 46">
+          <rect x="8" y="20" width="24" height="6" rx="2" />
+          <rect x="12" y="12" width="16" height="6" rx="2" />
+          <rect x="18" y="26" width="8" height="12" rx="2" />
+        </svg>
+        <svg className={styles.tool9} width="50" height="50" viewBox="0 0 50 50">
+          <rect x="10" y="18" width="30" height="8" rx="4" />
+          <rect x="22" y="26" width="6" height="16" rx="3" />
+        </svg>
+        <svg className={styles.tool10} width="60" height="60" viewBox="0 0 60 60">
+          <rect x="10" y="22" width="40" height="10" rx="3" />
+          <rect x="18" y="18" width="24" height="6" rx="3" />
+          <circle cx="30" cy="27" r="2.5" />
+          <circle cx="38" cy="27" r="2.5" />
+        </svg>
+        <svg className={styles.tool11} width="44" height="44" viewBox="0 0 44 44">
+          <circle cx="20" cy="24" r="10" />
+          <rect x="28" y="22" width="10" height="4" rx="2" />
+        </svg>
+        <svg className={styles.tool12} width="64" height="64" viewBox="0 0 64 64">
+          <rect x="14" y="14" width="36" height="10" rx="2" />
+          <rect x="28" y="24" width="8" height="26" rx="2" />
+          <rect x="24" y="50" width="16" height="6" rx="3" />
+        </svg>
+      </div>
+
       <div className={`${styles.layout} container`}>
         <Flex className={styles.left}>
           <CatalogFilters
@@ -334,6 +398,7 @@ export default function Catalog() {
           </div>
         </div>
       </div>
+
       {isAuth ? (
         <CartPopover
           router={router}
@@ -343,6 +408,6 @@ export default function Catalog() {
           cartsLoading={cartsLoading}
         />
       ) : null}
-    </>
+    </div>
   )
 }
