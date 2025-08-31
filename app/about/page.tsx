@@ -154,7 +154,7 @@ export default function About() {
                   </Paragraph>
                   <Paragraph className={styles.muted}>
                     С полной политикой можно ознакомиться&nbsp;
-                    <a href="/privacy" className={styles.link} target="_blank" rel="noopener noreferrer">
+                    <a href="/personal-data/" className={styles.link} target="_blank" rel="noopener noreferrer">
                       по ссылке
                     </a>
                     &nbsp;или запросить текст по электронной почте.
