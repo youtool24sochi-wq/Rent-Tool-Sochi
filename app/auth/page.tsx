@@ -25,6 +25,7 @@ export default function Auth() {
   const [submittedRegister, setSubmittedRegister] = React.useState(false)
   const [submittedLogin , setSubmiitedLogin] = React.useState(false)
   const [identifierType, setIdentifierType] = React.useState<'email' | 'phone'>('email')
+  const [registerIdentifierType, setRegisterIdentifierType] = React.useState<'email' | 'phone'>('email')
   const api = useNotificationApi()
 
   const searchParams = useSearchParams()
@@ -68,17 +69,21 @@ export default function Auth() {
   )
 
   const handleSubmitRegister = React.useCallback(
-    async (data: AuthTypes.RegisterUser & { first_name?: string; last_name?: string; middle_name?: string }) => {
+    async (data: AuthTypes.RegisterUser & { first_name?: string; last_name?: string; middle_name?: string; email?: string; phone?: string }) => {
       setSubmittedRegister(true)
-      const cleanedPhone = normalizePhone(data.phone)
-
       try {
-        const response = await dispatch(
-          register({
-            ...data,
-            phone: cleanedPhone,
-          }),
-        ).unwrap()
+        const payload: any = { ...data }
+
+        delete payload.phone
+
+        if (registerIdentifierType === 'phone') {
+          const cleanedPhone = normalizePhone(data.phone || '')
+
+          delete payload.email
+          payload.phone = cleanedPhone
+        }
+
+        const response = await dispatch(register(payload)).unwrap()
 
         if (response.status === 201) {
           router.push('/')
@@ -99,12 +104,17 @@ export default function Auth() {
         setSubmittedRegister(false)
       }
     },
-    [api, dispatch],
+    [api, dispatch, registerIdentifierType],
   )
 
   const loginRules = React.useMemo(
     () => loginIdentifierRules(identifierType),
     [identifierType],
+  )
+
+  const registerIdentifierRules = React.useMemo(
+    () => (registerIdentifierType === 'email' ? registerRules.email : registerRules.phone),
+    [registerIdentifierType],
   )
 
   return (
@@ -210,17 +220,23 @@ export default function Auth() {
                     className={styles.field}
                   />
                   <TextField
-                    name="email"
-                    label="Email"
-                    placeholder="Email"
-                    rules={registerRules.email}
-                    className={styles.field}
-                  />
-                  <TextField
-                    name="phone"
-                    label="Телефон"
-                    placeholder="Телефон"
-                    rules={registerRules.phone}
+                    name={registerIdentifierType === 'email' ? 'email' : 'phone'}
+                    label={(
+                      <div className={styles.identifierLabel}>
+                        <span>Email или телефон</span>
+                        <Segmented
+                          options={[
+                            { label: 'Email', value: 'email' },
+                            { label: 'Телефон', value: 'phone' },
+                          ]}
+                          size="small"
+                          value={registerIdentifierType}
+                          onChange={(value) => setRegisterIdentifierType(value as 'email' | 'phone')}
+                        />
+                      </div>
+                    )}
+                    placeholder={registerIdentifierType === 'email' ? 'Email' : 'Телефон'}
+                    rules={registerIdentifierRules}
                     className={styles.field}
                   />
                   <TextFieldPassword
