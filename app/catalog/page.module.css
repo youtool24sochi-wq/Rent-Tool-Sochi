@@ -75,7 +75,6 @@
 .tool11 { top: 8%; right: 6%; animation-duration: 38s; }
 .tool12 { bottom: 12%; right: 16%; animation-duration: 33s; }
 
-/* лёгкое парение для части иконок */
 .tool3, .tool5, .tool8, .tool11 {
   animation: spin 28s linear infinite, float 6.5s ease-in-out infinite;
   --rot: 0deg;

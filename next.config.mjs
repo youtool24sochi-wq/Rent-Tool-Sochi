@@ -2,7 +2,10 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: ['rts.badk.xyz'],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'api.renttoolspeed.ru' },
+    ],
+    formats: ['image/avif','image/webp'],
   },
 }
 

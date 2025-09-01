@@ -178,7 +178,7 @@ export default function CatalogDetail() {
   const handleShare = React.useCallback(async (app: 'telegram' | 'whatsapp') => {
     const name = catalog?.name || 'Без названия'
     const priceStr = hasDiscount ? `${finalPrice} ₽/день` : (basePrice > 0 ? `${basePriceTrunc} ₽/день` : 'Цена уточняется')
-    const url = catalog?.tool_id ? `https://rent-tool-speed.vercel.app/catalog/${catalog.tool_id}` : ''
+    const url = catalog?.tool_id ? `https://renttoolspeed.ru/catalog/${catalog.tool_id}` : ''
     const header = 'С вами поделились инструментом:'
     const namePrice = [name, priceStr].filter(Boolean).join(' ')
     const text = [header, namePrice, url].filter(Boolean).join('\n')
@@ -219,23 +219,18 @@ export default function CatalogDetail() {
     show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   }
 
-  const images = [
-    ...(catalog.main_image ? [catalog.main_image] : []),
-    ...((catalog.images ?? []).filter((i) => i && i !== catalog.main_image)),
-  ]
-
   return (
     <>
       <motion.div className={`${styles.layout} container`} initial="hidden" animate="show" variants={fade}>
         <Row gutter={[48, 48]}>
           <Col xs={24} md={12}>
             <Carousel
-              dots={images.length > 1}
-              arrows={images.length > 1}
+              dots={catalog.images.length > 1}
+              arrows={catalog.images.length > 1}
               className={styles.carousel}
             >
-              {images.length ? (
-                images.map((item, index) => (
+              {catalog.images.length ? (
+                catalog.images.map((item, index) => (
                   <div key={index} className={styles.imgWrap}>
                     <Image
                       src={`https://api.renttoolspeed.ru${item}`}
