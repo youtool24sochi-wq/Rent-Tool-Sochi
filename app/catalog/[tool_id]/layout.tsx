@@ -1,5 +1,4 @@
 import { CatalogIdGET } from '@/services/catalog-api'
-import { noPhoto } from '@/shared/assets/images'
 
 import type { Metadata } from 'next'
 
@@ -14,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const name = data?.name || 'Инструмент'
   const price = data?.price_per_day != null ? `${Math.trunc(Number(data.price_per_day))} ₽/день` : 'Цена уточняется'
   const url = `https://rent-tool-speed.vercel.app/catalog/${tool_id}`
-  const img: any = data?.main_image ? `https://api.renttoolspeed.ru${data.main_image}` : noPhoto
+  const img: any = data?.main_image ? `https://api.renttoolspeed.ru${data.main_image}` : 'https://renttoolspeed.ru/og/no-photo.ppg'
 
   return {
     title: name,
