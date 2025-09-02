@@ -179,15 +179,19 @@ export const refreshOAuth2Token = createAsyncThunk<unknown, any>(
   async (access_token: string , { dispatch , rejectWithValue }) => {
     try {
 
-      const response: any = await axios.post(`${API_URL}/auth/oauth2/refresh/`, {
+      const { data } = await axios.post(`${API_URL}/auth/oauth2/refresh/`, {
         access_token,
       })
 
-      const { refresh, access } = response
+      const { refresh, access } = data
+
+      console.log('data', data)
+      console.log('refresh', refresh)
+      console.log('access', access)
 
       dispatch(authSlice.actions.setTokens({ refresh, access }))
 
-      return response
+      return data
     } catch (error) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.response!.data.message)
