@@ -13,8 +13,8 @@ export default function AuthCallBack() {
   const searchParams = useSearchParams()
   const dispatch = useAppDispatch()
   const isAuth = useAppSelector((state) => state.auth.isAuth)
-  const api = useNotificationApi()
   const [checked, setChecked] = React.useState(false)
+  const api = useNotificationApi()
 
   React.useEffect(() => {
     if (isAuth) {
