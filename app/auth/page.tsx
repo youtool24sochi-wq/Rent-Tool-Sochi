@@ -7,12 +7,13 @@ import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 import { useNotificationApi } from '@/providers/NotificationProvider'
+import { AuthUrlGET } from '@/services/user-api'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/reduxHook'
 import { isPhoneLike, normalizePhone } from '@/shared/tools/authPhone'
 import { AuthTypes } from '@/shared/types/auth/auth.interface'
 import { TextField } from '@/shared/ui/textfield/textfield'
 import { TextFieldPassword } from '@/shared/ui/textfield-password/textfield-password'
-import { loginIdentifierRules, registerRules } from '@/shared/validation/auth/authValidate'
+import { emailFormat, loginIdentifierRules, registerRules } from '@/shared/validation/auth/authValidate'
 import { loginAuth, register } from '@/store/features/auth/authSlice'
 
 import styles from './page.module.css'
@@ -24,19 +25,32 @@ export default function Auth() {
   const [tab, setTab] = React.useState<'login' | 'register'>('login')
   const [submittedRegister, setSubmittedRegister] = React.useState(false)
   const [submittedLogin , setSubmiitedLogin] = React.useState(false)
-  const [identifierType, setIdentifierType] = React.useState<'email' | 'phone'>('email')
-  const [registerIdentifierType, setRegisterIdentifierType] = React.useState<'email' | 'phone'>('email')
+  const [identifierType, setIdentifierType] = React.useState<'email' | 'phone'>('phone')
+  const [registerIdentifierType, setRegisterIdentifierType] = React.useState<'email' | 'phone'>('phone')
+  const [authUrl, setAuthUrl] = React.useState<{auth_url: string, backend_name: string}>()
   const api = useNotificationApi()
 
   const searchParams = useSearchParams()
   // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   const code = searchParams.get('code')
 
+  const loadAuthUrl = async () => {
+    try {
+      const response = await AuthUrlGET()
+
+      setAuthUrl(response?.data)
+    } catch (error) {
+      console.log('error', error)
+
+    }
+  }
+
   React.useEffect(() => {
     if (isAuth) {
       router.push('/')
     }
-  }, [])
+    loadAuthUrl()
+  }, [isAuth])
 
   const handleSubmitLogin = React.useCallback(
     async (data: AuthTypes.LoginUser) => {
@@ -79,18 +93,18 @@ export default function Auth() {
         if (registerIdentifierType === 'phone') {
           const cleanedPhone = normalizePhone(data.phone || '')
 
-          delete payload.email
           payload.phone = cleanedPhone
         }
 
         const response = await dispatch(register(payload)).unwrap()
 
-        if (response.status === 201) {
+        if (response) {
           router.push('/')
-          api.info({
-            message: response.data.message,
-            placement: 'top',
-          })
+          if (response.message === 'Регистрация пройдена. Подтвердите email.') {
+            api.info({ message: response.message, placement: 'top' })
+          } else {
+            api.success({ message: response.message, placement: 'top' })
+          }
         }
       } catch (error: any) {
         if (error?.data.email?.[0] === 'Пользователь с таким email уже существует') {
@@ -149,11 +163,11 @@ export default function Auth() {
                     name="login"
                     label={(
                       <div className={styles.identifierLabel}>
-                        <span>Email или телефон</span>
+                        <span>Телефон или email</span>
                         <Segmented
                           options={[
-                            { label: 'Email', value: 'email' },
                             { label: 'Телефон', value: 'phone' },
+                            { label: 'Email', value: 'email' },
                           ]}
                           size="small"
                           value={identifierType}
@@ -223,11 +237,11 @@ export default function Auth() {
                     name={registerIdentifierType === 'email' ? 'email' : 'phone'}
                     label={(
                       <div className={styles.identifierLabel}>
-                        <span>Email или телефон</span>
+                        <span>Телефон или email</span>
                         <Segmented
                           options={[
-                            { label: 'Email', value: 'email' },
                             { label: 'Телефон', value: 'phone' },
+                            { label: 'Email', value: 'email' },
                           ]}
                           size="small"
                           value={registerIdentifierType}
@@ -239,6 +253,15 @@ export default function Auth() {
                     rules={registerIdentifierRules}
                     className={styles.field}
                   />
+                  {registerIdentifierType === 'phone' ? (
+                    <TextField
+                      name={'email'}
+                      label={'Email'}
+                      placeholder={'Email'}
+                      rules={[emailFormat]}
+                      className={styles.field}
+                    />
+                  ) : null}
                   <TextFieldPassword
                     name="password"
                     label="Пароль"
@@ -274,7 +297,7 @@ export default function Auth() {
             <span />или войти через<span />
           </div>
 
-          <a className={styles.oauthBtn}>
+          <a href={authUrl?.auth_url} className={styles.oauthBtn}>
             <Image
               src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
               width={20}

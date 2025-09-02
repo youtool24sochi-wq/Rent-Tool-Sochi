@@ -84,9 +84,16 @@ export const loginAuth = createAsyncThunk<unknown, AuthTypes.LoginUser>(
 
 export const register = createAsyncThunk<any, AuthTypes.RegisterUser>(
   'auth/register',
-  async (data: AuthTypes.RegisterUser, { rejectWithValue }) => {
+  async (data: AuthTypes.RegisterUser, { dispatch,rejectWithValue }) => {
     try {
-      const response = await axios.post(`${API_URL}/auth/register/`, data)
+      const { data: response } = await axios.post(`${API_URL}/auth/register/`, data)
+
+      const { refresh, access, user } = response
+
+      if (refresh && access && user) {
+        dispatch(authSlice.actions.setTokens({ refresh, access }))
+        dispatch(authSlice.actions.setUser(user))
+      }
 
       return response
     } catch (error) {
@@ -159,6 +166,28 @@ export const refreshToken = createAsyncThunk<unknown, void>(
       if (!state.auth.isValidToken) {
         dispatch(authSlice.actions.setTokens(data))
       }
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.response!.data.message)
+      }
+    }
+  },
+)
+
+export const refreshOAuth2Token = createAsyncThunk<unknown, any>(
+  'auth/refresh',
+  async (access_token: string , { dispatch , rejectWithValue }) => {
+    try {
+
+      const response: any = await axios.post(`${API_URL}/auth/oauth2/refresh/`, {
+        access_token,
+      })
+
+      const { refresh, access } = response
+
+      dispatch(authSlice.actions.setTokens({ refresh, access }))
+
+      return response
     } catch (error) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.response!.data.message)
