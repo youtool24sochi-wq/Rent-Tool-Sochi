@@ -31,10 +31,11 @@ export default function AuthCallBack() {
         router.push('/')
         api.success({
           message: 'Вы успешно вошли через гугл',
+          placement: 'top',
         })
       })
     } else {
-    //   router.replace('/auth')
+      router.replace('/auth')
       api.error({
         message: 'Ссылка недействительна или токены отсутствуют',
         description: 'Попробуйте пройти регистрацию ещё раз или используйте актуальную ссылку из письма.',

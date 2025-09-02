@@ -185,10 +185,6 @@ export const refreshOAuth2Token = createAsyncThunk<unknown, any>(
 
       const { refresh, access } = data
 
-      console.log('data', data)
-      console.log('refresh', refresh)
-      console.log('access', access)
-
       dispatch(authSlice.actions.setTokens({ refresh, access }))
 
       return data
