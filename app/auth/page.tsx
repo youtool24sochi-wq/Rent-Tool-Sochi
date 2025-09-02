@@ -100,10 +100,10 @@ export default function Auth() {
 
         if (response) {
           router.push('/')
-          if (response.message === 'Регистрация пройдена. Подтвердите email.') {
-            api.info({ message: response.message, placement: 'top' })
+          if (response.access && response.refresh) {
+            api.success({ message: 'Вы успешно зарегистрировались', placement: 'top' })
           } else {
-            api.success({ message: response.message, placement: 'top' })
+            api.info({ message: response.message, placement: 'top' })
           }
         }
       } catch (error: any) {
