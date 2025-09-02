@@ -23,7 +23,7 @@ export default function AuthCallBack() {
       return
     }
 
-    const access = searchParams.get('access')
+    const access = searchParams.get('access_token')
 
     if (access) {
       dispatch(refreshOAuth2Token(access))
