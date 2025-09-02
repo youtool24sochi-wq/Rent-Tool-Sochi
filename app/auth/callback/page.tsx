@@ -34,7 +34,7 @@ export default function AuthCallBack() {
         })
       })
     } else {
-      router.replace('/auth')
+    //   router.replace('/auth')
       api.error({
         message: 'Ссылка недействительна или токены отсутствуют',
         description: 'Попробуйте пройти регистрацию ещё раз или используйте актуальную ссылку из письма.',
