@@ -13,7 +13,7 @@ import { isPhoneLike, normalizePhone } from '@/shared/tools/authPhone'
 import { AuthTypes } from '@/shared/types/auth/auth.interface'
 import { TextField } from '@/shared/ui/textfield/textfield'
 import { TextFieldPassword } from '@/shared/ui/textfield-password/textfield-password'
-import { emailFormat, loginIdentifierRules, registerRules } from '@/shared/validation/auth/authValidate'
+import { loginIdentifierRules, registerRules } from '@/shared/validation/auth/authValidate'
 import { loginAuth, register } from '@/store/features/auth/authSlice'
 
 import styles from './page.module.css'
@@ -253,6 +253,7 @@ export default function Auth() {
                     rules={registerIdentifierRules}
                     className={styles.field}
                   />
+                  {/*
                   {registerIdentifierType === 'phone' ? (
                     <TextField
                       name={'email'}
@@ -262,6 +263,7 @@ export default function Auth() {
                       className={styles.field}
                     />
                   ) : null}
+                    */}
                   <TextFieldPassword
                     name="password"
                     label="Пароль"

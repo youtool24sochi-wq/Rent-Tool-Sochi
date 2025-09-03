@@ -26,14 +26,23 @@ export default function AuthCallBack() {
     const access = searchParams.get('access_token')
 
     if (access) {
-      dispatch(refreshOAuth2Token(access))
-      dispatch(userMe()).finally(() => {
-        router.push('/')
-        api.success({
-          message: 'Вы успешно вошли через гугл',
+      const response: any = dispatch(refreshOAuth2Token(access))
+
+      if (response) {
+        dispatch(userMe()).finally(() => {
+          router.push('/')
+          api.success({
+            message: 'Вы успешно вошли через гугл',
+            placement: 'top',
+          })
+        })
+      } else {
+        router.replace('/auth')
+        api.error({
+          message: 'Произошла ошибка, попробуйте позже',
           placement: 'top',
         })
-      })
+      }
     } else {
       router.replace('/auth')
       api.error({
