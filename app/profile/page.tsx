@@ -49,7 +49,8 @@ import { useAppSelector } from '@/shared/hooks/reduxHook'
 import { FavoritesTypes } from '@/shared/types/favorites/favorites.interface'
 import { UsersTypes } from '@/shared/types/users/users.interface'
 import { DraggerFileField } from '@/shared/ui/dragger-file-field/dragger-file-field'
-import { registerRules } from '@/shared/validation/auth/authValidate'
+import { TextField } from '@/shared/ui/textfield/textfield'
+import { phoneFormat } from '@/shared/validation/auth/authValidate'
 
 import Loader from '../loading'
 
@@ -193,7 +194,7 @@ export default function Profile() {
     if (editingProfile && user) {
       formProfile.setFieldsValue({
         last_name: user.last_name || '',
-        name: user.name || user.first_name || '',
+        name: user.first_name || '',
         middle_name: user.middle_name || '',
         address: user.address || '',
         phone: user.phone_number || '',
@@ -443,15 +444,7 @@ export default function Profile() {
                               <Input placeholder="г. Бишкек, ул. ..." />
                             </Form.Item>
                           </Col>
-                          <Col xs={24} md={12}>
-                            <Form.Item
-                              name="phone"
-                              label="Номер телефона"
-                              rules={registerRules.phone}
-                            >
-                              <Input placeholder="+7(AAA)BBB-CC-DD или 8(AAA)BBB-CC-DD" />
-                            </Form.Item>
-                          </Col>
+                          <Col xs={24}><TextField isSimple={true} name="phone" placeholder="+7(AAA)BBB-CC-DD или 8(AAA)BBB-CC-DD"  rules={[phoneFormat]} label="Номер телефона"  /></Col>
                           <Col span={24}>
                             <DraggerFileField
                               name="avatar"

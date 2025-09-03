@@ -13,12 +13,13 @@ interface Props extends InputProps {
   rules?: Rule[]
   maxLength?: number
   readOnly?: boolean
+  isSimple?: boolean
 }
 
 export const TextField: React.FC<Props> = (props) => {
   return (
     <FormItem
-      className={`${cls.textField} ${props.disabled && cls.textField_disabled}`}
+      className={`${props.isSimple ? '' : cls.textField} ${props.disabled && cls.textField_disabled}`}
       label={props.label}
       style={props.style}
       initialValue={props.initialValue}
