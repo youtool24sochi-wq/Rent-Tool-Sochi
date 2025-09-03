@@ -9,10 +9,10 @@ import { useAppDispatch, useAppSelector } from '@/shared/hooks/reduxHook'
 import { refreshOAuth2Token, userMe } from '@/store/features/auth/authSlice'
 
 export default function AuthCallBack() {
+  const dispatch = useAppDispatch()
   const router = useRouter()
   const api = useNotificationApi()
   const searchParams = useSearchParams()
-  const dispatch = useAppDispatch()
   const isAuth = useAppSelector((state) => state.auth.isAuth)
   const [checked, setChecked] = React.useState(false)
 
