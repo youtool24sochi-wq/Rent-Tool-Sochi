@@ -13,7 +13,7 @@ export const CheckoutOrderIdGET = async (id: string | string[] | undefined) => {
 
 export const CheckoutUpdateCustomerDataPATCH = async (
   id: string | string[] | undefined,
-  payload: { customer_data_type:string; payment_method:string; work_address?: string },
+  payload: { customer_data_type:string; payment_method:string | null; work_address?: string },
 ) => {
   const { data } = await $axios.patch(`${API_URL}/checkout/${id}/update_customer_data/`, payload)
 

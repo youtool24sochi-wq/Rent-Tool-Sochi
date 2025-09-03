@@ -45,11 +45,11 @@ import { useRouter } from 'next/navigation'
 import { useNotificationApi } from '@/providers/NotificationProvider'
 import { FavoriteGET } from '@/services/favorites-api'
 import { UserMeGET, UserMeLegalGET, UsersUpdateDataPATCH, UsersMeLegalPATCH, UsersOrdersGET } from '@/services/user-api'
-import { noPhoto } from '@/shared/assets/images'
 import { useAppSelector } from '@/shared/hooks/reduxHook'
 import { FavoritesTypes } from '@/shared/types/favorites/favorites.interface'
 import { UsersTypes } from '@/shared/types/users/users.interface'
 import { DraggerFileField } from '@/shared/ui/dragger-file-field/dragger-file-field'
+import { registerRules } from '@/shared/validation/auth/authValidate'
 
 import Loader from '../loading'
 
@@ -196,6 +196,7 @@ export default function Profile() {
         name: user.name || user.first_name || '',
         middle_name: user.middle_name || '',
         address: user.address || '',
+        phone: user.phone_number || '',
       })
     }
   }, [editingProfile, user, formProfile])
@@ -265,7 +266,7 @@ export default function Profile() {
   const getOrderThumb = (o: UsersTypes.Order) => {
     const img = o.items?.[0]?.tool?.main_image
 
-    return img || noPhoto
+    return `https://api.renttoolspeed.ru${img || 'https://renttoolspeed.ru/og/no-photo.png'}`
   }
   const getOrderTitle = (o: UsersTypes.Order) => o.items?.[0]?.tool?.name || 'Заказ'
   const getOrderDueText = (o: UsersTypes.Order) => {
@@ -402,7 +403,7 @@ export default function Profile() {
                     <div className={styles.editCard}>
                       <Flex gap={10} vertical className={styles.editHead}>
                         <Title level={4} className={styles.blockTitleSmall}>Редактирование профиля</Title>
-                        <Tag className={styles.tagMuted}>Доступно: имя, фамилия, отчество, адрес, фото</Tag>
+                        <Tag className={styles.tagMuted}>Доступно: имя, фамилия, отчество, адрес, фото, номер</Tag>
                       </Flex>
                       <Form form={formProfile} layout="vertical" className={styles.editForm} requiredMark={false}>
                         <Row gutter={[12, 12]}>
@@ -442,6 +443,15 @@ export default function Profile() {
                               <Input placeholder="г. Бишкек, ул. ..." />
                             </Form.Item>
                           </Col>
+                          <Col xs={24} md={12}>
+                            <Form.Item
+                              name="phone"
+                              label="Номер телефона"
+                              rules={registerRules.phone}
+                            >
+                              <Input placeholder="+7(AAA)BBB-CC-DD или 8(AAA)BBB-CC-DD" />
+                            </Form.Item>
+                          </Col>
                           <Col span={24}>
                             <DraggerFileField
                               name="avatar"
@@ -479,7 +489,7 @@ export default function Profile() {
                           try {
                             setSavingProfile(true)
                             const values = await formProfile.validateFields()
-                            const payloadKeys: Array<keyof UsersTypes.Individual> = ['last_name', 'middle_name', 'name', 'address']
+                            const payloadKeys: Array<keyof UsersTypes.Individual> = ['last_name', 'middle_name', 'name', 'address', 'phone']
                             const hasNewFile =
                               Array.isArray(values.avatar) && values.avatar.some((f: any) => !!f.originFileObj)
 
@@ -582,7 +592,7 @@ export default function Profile() {
                               <Col xs={24} md={12} key={item.id}>
                                 <Card bordered className={styles.orderCard}>
                                   <Flex align="center" gap={12} className={styles.orderHead}>
-                                    <Image src={getOrderThumb(item)} alt="" unoptimized className={styles.thumb} />
+                                    <Image src={getOrderThumb(item)} alt="" width={0} height={0} sizes="100vw" unoptimized className={styles.thumb} />
                                     <Space size={0} direction="vertical" className={styles.orderText}>
                                       <Text className={styles.orderTitle}>{getOrderTitle(item)}</Text>
                                       <Text className={styles.subMuted}>{getOrderDueText(item)}</Text>
@@ -689,7 +699,7 @@ export default function Profile() {
                             <Col xs={24} md={12} key={f.tool_id}>
                               <Card bordered className={styles.favoriteCard}>
                                 <Flex align="center" gap={14} className={styles.favoriteRow}>
-                                  <Image src={f.main_image || noPhoto} alt="" unoptimized className={styles.favoriteImg} />
+                                  <Image src={f.main_image || 'https://renttoolspeed.ru/og/no-photo.png'} alt="" unoptimized className={styles.favoriteImg} />
                                   <Space size={0} direction="vertical" style={{ flex: 1 }} className={styles.favoriteText}>
                                     <Text className={styles.favoriteTitle}>{f.name}</Text>
                                     <Text className={styles.favoriteDesc}>{f.description}</Text>

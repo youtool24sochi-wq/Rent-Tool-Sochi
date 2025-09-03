@@ -248,8 +248,8 @@
 }
 
 .thumb {
-  width: 64px;
-  height: 64px;
+  width: 64px !important;
+  height: 64px !important;
   border-radius: 12px !important;
   border: 1px solid #fde7d6 !important;
   background: #fff7ed !important;
@@ -484,8 +484,8 @@
     align-items: flex-start;
   }
   .thumb {
-    width: 56px;
-    height: 56px;
+    width: 56px !important;
+    height: 56px !important;
   }
   .favoriteRow {
     flex-wrap: wrap !important;
@@ -535,7 +535,7 @@
   }
   .thumb,
   .favoriteImg {
-    width: 60px;
-    height: 60px;
+    width: 60px !important;
+    height: 60px !important;
   }
 }

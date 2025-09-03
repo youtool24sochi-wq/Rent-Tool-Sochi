@@ -9,7 +9,6 @@ import dayjs, { Dayjs } from 'dayjs'
 import Image from 'next/image'
 
 import { CartAllDELETE, CartCheckAvailability, CartCheckoutCreate } from '@/services/cart-api'
-import { noPhoto } from '@/shared/assets/images'
 import { CartType } from '@/shared/types/cart/cart.interface'
 
 import styles from './cart-popover.module.css'
@@ -214,7 +213,7 @@ export default function CartPopover({ carts, cartsLoading, handleDeleteCart, api
                 <List.Item className={styles.item} key={item.tool_id}>
                   <Flex vertical>
                     <div className={styles.thumbWrap}>
-                      <Image src={item.main_image?.image || noPhoto} alt={item.name} fill unoptimized className={styles.thumb} sizes="80px" />
+                      <Image src={`https://api.renttoolspeed.ru${item.main_image}` || 'https://renttoolspeed.ru/og/no-photo.png'} alt={item.name} fill width={0} height={0} unoptimized className={styles.thumb} sizes="80px" />
                     </div>
                     <div className={styles.itemInfo}>
                       <div className={styles.itemTop} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>

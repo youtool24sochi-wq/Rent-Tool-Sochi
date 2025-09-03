@@ -171,6 +171,7 @@
   .left {
     justify-content: space-between !important;
     align-items: center !important;
+    margin-top: 20px;
   }
 
   .searchInput {

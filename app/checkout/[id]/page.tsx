@@ -14,6 +14,7 @@ import { CheckoutTypes } from '@/shared/types/checkout/checkout.interface'
 import { UsersTypes } from '@/shared/types/users/users.interface'
 import { DraggerFileField } from '@/shared/ui/dragger-file-field/dragger-file-field'
 import { TextField } from '@/shared/ui/textfield/textfield'
+import { registerRules } from '@/shared/validation/auth/authValidate'
 
 import Loader from '../../loading'
 
@@ -34,7 +35,7 @@ export default function Checkout() {
   const [isOrderLoading, setIsOrderLoading] = React.useState(false)
 
   const [customerType, setCustomerType] = React.useState<CustomerType>('individual')
-  const [paymentMethod, setPaymentMethod] = React.useState<PaymentMethod>('cash')
+  const [paymentMethod, setPaymentMethod] = React.useState<PaymentMethod | null>(null)
   const [offerAccepted, setOfferAccepted] = React.useState(false)
   const [paymentSelected, setPaymentSelected] = React.useState(false)
 
@@ -114,6 +115,7 @@ export default function Checkout() {
       passport_department: me.passport_department,
       birth_date: me.birth_date ? dayjs(me.birth_date) : undefined,
       birth_place: me.birth_place,
+      phone_number: me.phone_number,
     })
   }, [me, order, form])
 
@@ -155,7 +157,7 @@ export default function Checkout() {
     }
   }
 
-  const proceedCustomerData = async (payload: { customer_data_type: CustomerType; payment_method: PaymentMethod; work_address?: string }) => {
+  const proceedCustomerData = async (payload: { customer_data_type: CustomerType; payment_method: PaymentMethod | null; work_address?: string }) => {
     await CheckoutUpdateCustomerDataPATCH(id, payload)
     const updated = await CheckoutOrderIdGET(id)
 
@@ -198,6 +200,7 @@ export default function Checkout() {
           passport_department: values.passport_department,
           birth_date: dayjs(values.birth_date).format('YYYY-MM-DD'),
           birth_place: values.birth_place,
+          phone: values.phone_number,
         })
         const refreshed = await UserMeGET()
 
@@ -335,6 +338,7 @@ export default function Checkout() {
             </Form.Item>
           </Col>
           <Col xs={24}><TextField name="birth_place" label="Место рождения" rules={[{ required: true }]} readOnly={readonlyIndividual} /></Col>
+          {me?.phone_number ? null : ( <Col xs={24}><TextField name="phone_number" rules={registerRules.phone} label="Номер телефона"  /></Col>)}
           <Col xs={24}><TextField name="work_address" label="Адрес работы" readOnly={isLocked} /></Col>
         </Row>
       </Form>
@@ -369,9 +373,11 @@ export default function Checkout() {
           initialValues={initialValues}
         >
           <Row gutter={[16, 12]}>
-            <Col xs={24} md={8}>
-              <TextField name="phone" label="Телефон" rules={[{ required: true }]} readOnly={readonlyLegal} />
-            </Col>
+            {me?.phone_number ? null : (
+              <Col xs={24} md={8}>
+                <TextField name="phone" label="Телефон" rules={registerRules.phone} readOnly={readonlyLegal} />
+              </Col>
+            )}
 
             <Col xs={24} md={16}>
               <Form.Item name="organization_type" label="Тип организации" rules={[{ required: true }]}>
@@ -383,7 +389,7 @@ export default function Checkout() {
                   }}
                 >
                   <Radio.Button value="LLC">ООО</Radio.Button>
-                  <Radio.Button value="IP">ИП</Radio.Button>
+                  <Radio.Button style={{ marginLeft: 8 }} value="IP">ИП</Radio.Button>
                 </Radio.Group>
               </Form.Item>
             </Col>

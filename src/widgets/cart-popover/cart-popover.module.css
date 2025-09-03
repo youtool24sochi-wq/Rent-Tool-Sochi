@@ -118,17 +118,17 @@
 }
 
 .thumbWrap{
-  position:relative;
+  position:relative ;
   width:100%;
-  border-radius:10px;
+  border-radius:10px ;
   overflow:hidden;
   flex:0 0 90px;
-  border:1px solid rgba(249,115,22,.20);
-  background:#f9fafb;
+  border:1px solid rgba(249,115,22,.20) ;
+  background:#f9fafb ;
 }
 
 .thumb{
-  object-fit:cover;
+  object-fit:cover !important;
 }
 
 .itemInfo{

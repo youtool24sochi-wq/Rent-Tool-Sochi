@@ -13,7 +13,6 @@ import { CartDELETE, CartListGET, CartPOST } from '@/services/cart-api'
 import { CatalogIdAuthGET, CatalogIdGET } from '@/services/catalog-api'
 import { FavoriteDELETE, FavoritePOST } from '@/services/favorites-api'
 import { TelegramOutlined } from '@/shared/assets/icons'
-import { noPhoto } from '@/shared/assets/images'
 import { useAppSelector } from '@/shared/hooks/reduxHook'
 import { CartType } from '@/shared/types/cart/cart.interface'
 import { CatalogProductTypes } from '@/shared/types/catalog/catalog-product-card.interface'
@@ -245,7 +244,7 @@ export default function CatalogDetail() {
               ) : (
                 <div className={styles.imgWrap}>
                   <Image
-                    src={noPhoto}
+                    src={'https://renttoolspeed.ru/og/no-photo.png'}
                     alt="Нет изображения"
                     className={styles.image}
                     sizes="100vw"

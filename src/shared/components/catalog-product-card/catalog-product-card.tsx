@@ -8,7 +8,6 @@ import { Button, Tooltip } from 'antd'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { noPhoto } from '@/shared/assets/images'
 import { CatalogProductTypes } from '@/shared/types/catalog/catalog-product-card.interface'
 
 import styles from './catalog-product-card.module.css'
@@ -54,7 +53,7 @@ function CatalogProductCard({ product, onAddToCart, onToggleFavorite, favPending
 
       <div className={styles.thumbWrap}>
         <Image
-          src={product.main_image ? `https://api.renttoolspeed.ru${product.main_image}` : noPhoto}
+          src={product.main_image ? `https://api.renttoolspeed.ru${product.main_image}` : 'https://renttoolspeed.ru/og/no-photo.png'}
           alt={product.name}
           fill
           unoptimized

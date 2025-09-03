@@ -20,6 +20,7 @@ export namespace UsersTypes {
     birth_date: string
     birth_place: string
     phone_number?: string
+    phone?: string,
     email?: string
     inn?: string
     avatar?: string | null

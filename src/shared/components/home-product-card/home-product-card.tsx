@@ -5,7 +5,6 @@ import { Button } from 'antd'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
-import { noPhoto } from '@/shared/assets/images'
 import { HomeType } from '@/shared/types/home/home.interface'
 
 import styles from './home-product-card.module.css'
@@ -51,7 +50,7 @@ export default function HomeProductCard({ product }: Props) {
 
       <div className={styles.thumbWrap}>
         <Image
-          src={product.main_image ? `https://api.renttoolspeed.ru${product.main_image}` : noPhoto}
+          src={product.main_image ? `https://api.renttoolspeed.ru${product.main_image}` : 'https://renttoolspeed.ru/og/no-photo.png'}
           alt={product.name}
           fill
           priority

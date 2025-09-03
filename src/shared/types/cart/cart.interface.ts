@@ -11,7 +11,7 @@ export namespace CartType {
         final_price: number;
         status: string;
         discount: string;
-        main_image: {id: number, image: string | StaticImageData};
+        main_image: string | StaticImageData;
         badge: string;
         stock_quantity: number
     }
