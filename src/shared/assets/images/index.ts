@@ -1,5 +1,5 @@
-import LogoPng from './logo.png'
+import Logo from './logo.svg'
 
 export {
-  LogoPng,
+  Logo,
 }

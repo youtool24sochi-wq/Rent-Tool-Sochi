@@ -1,5 +1,7 @@
 import { AxiosError } from 'axios'
 
+import { UsersTypes } from '../users/users.interface'
+
 export namespace AuthTypes {
     export interface LoginUser  {
         login: string
@@ -25,13 +27,7 @@ export namespace AuthTypes {
         new_password: string
     };
 
-    export interface User {
-        id: number
-        email: string
-        phone_number: string
-        name: string
-        avatar: string | null
-    }
+    export type User = UsersTypes.Individual
 
     export type ErrorMessage = Error | AxiosError | null;
 

@@ -3,6 +3,7 @@ import axios, { AxiosError } from 'axios'
 
 import $axios from '@/shared/api/axios'
 import { AuthTypes } from '@/shared/types/auth/auth.interface'
+import { UsersTypes } from '@/shared/types/users/users.interface'
 import { API_URL } from '@/shared/utils/consts'
 
 import { RootState } from '../../store'
@@ -20,7 +21,7 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setUser: (state: AuthTypes.AuthState, action: PayloadAction<AuthTypes.User>) => {
+    setUser: (state: AuthTypes.AuthState, action: PayloadAction<UsersTypes.Individual>) => {
       const user = JSON.stringify(action.payload)
 
       localStorage.setItem('user', user)

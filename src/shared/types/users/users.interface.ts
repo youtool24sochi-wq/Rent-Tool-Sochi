@@ -21,7 +21,7 @@ export namespace UsersTypes {
     birth_place: string
     phone_number?: string
     phone?: string,
-    email?: string
+    email?: string | undefined
     inn?: string
     avatar?: string | null
     email_verified: boolean

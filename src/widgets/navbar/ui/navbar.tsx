@@ -12,10 +12,12 @@ import {
 } from '@ant-design/icons'
 import { Drawer, Menu, Button, Dropdown, Flex, Tooltip } from 'antd'
 import { MenuProps } from 'antd'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 
 import { TelegramOutlined } from '@/shared/assets/icons'
+import { Logo } from '@/shared/assets/images'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/reduxHook'
 import { setLogout } from '@/store/features/auth/authSlice'
 
@@ -58,7 +60,7 @@ export const Navbar = () => {
       <header className={styles.header}>
         <div className={styles.container}>
           <div onClick={() => router.push('/')} className={styles.logo}>
-            <span className={styles.logoMark}>
+            {/* <span className={styles.logoMark}>
               <svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" fill="none">
                 <path
                   strokeLinecap="round"
@@ -67,7 +69,8 @@ export const Navbar = () => {
                   d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
                 />
               </svg>
-            </span>
+            </span> */}
+            <Image unoptimized src={Logo.src} alt="logo" width={0} height={0} sizes="100vw" className={styles.logoImage}/>
             <h1 className={styles.logoText}>
               Rent<span className={styles.logoTextAccent}>Tool</span>Sochi
             </h1>
@@ -99,9 +102,7 @@ export const Navbar = () => {
               <a href="https://wa.me/78621234567" className={`${styles.socialIcon} ${styles.iconWa}`}>
                 <WhatsAppOutlined />
               </a>
-              <a href="https://t.me/YouToolSochi
-" className={`${styles.socialIcon} ${styles.iconTg}`}
-              >
+              <a href="https://t.me/YouToolSochi" className={`${styles.socialIcon} ${styles.iconTg}`}>
                 <TelegramOutlined />
               </a>
             </div>
@@ -113,9 +114,11 @@ export const Navbar = () => {
                 dropdownRender={() => (
                   <div className={styles.dropdownCard}>
                     <div className={styles.userBox}>
-                      <div className={styles.userBigAvatar}>
-                        {user.name?.[0] || user.email?.[0]}
-                      </div>
+                      {user.avatar ? (<Image src={`https://api.renttoolspeed.ru${user.avatar}`} alt="Avatar" unoptimized width={0} height={0} sizes="100vw" className={styles.avatarImage}/>) : (
+                        <div className={styles.userBigAvatar}>
+                          {user.name?.[0] || user.email?.[0]}
+                        </div>
+                      )}
                       <h3 className={styles.userName}>{user.name}</h3>
                       <p className={styles.userEmail}>{user.email}</p>
                     </div>
@@ -127,7 +130,9 @@ export const Navbar = () => {
                 )}
               >
                 <button className={styles.avatarBtn}>
-                  <span className={styles.avatar}>{user.name?.[0] || user.email?.[0]}</span>
+                  {user.avatar ? (<Image src={`https://api.renttoolspeed.ru${user.avatar}`} alt="Avatar" unoptimized width={0} height={0} sizes="100vw" className={styles.avatarImageMain}/>) : (
+                    <span className={styles.avatar}>{user.name?.[0] || user.email?.[0]}</span>
+                  )}
                   <Flex align="center" gap={8}>
                     <span>{user.name}</span>
                     <svg className={styles.svgArrow} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -160,7 +165,7 @@ export const Navbar = () => {
       >
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem', borderBottom: '1px solid #e5e7eb' }}>
           <Link href="/" onClick={close} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none' }}>
-            <span className={styles.logoMark}>
+            {/* <span className={styles.logoMark}>
               <svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" fill="none">
                 <path
                   strokeLinecap="round"
@@ -169,7 +174,8 @@ export const Navbar = () => {
                   d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
                 />
               </svg>
-            </span>
+            </span> */}
+            <Image unoptimized src={Logo.src} alt="logo" width={0} height={0} sizes="100vw" className={styles.logoImage}/>
             <span style={{ fontWeight: 700, color: '#111827' }}>RentToolSochi</span>
           </Link>
           <Button type="text" icon={<CloseOutlined />} onClick={close} />
@@ -202,7 +208,9 @@ export const Navbar = () => {
           {authed ? (
             <>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.75rem', background: '#f9fafb', borderRadius: 8 }}>
-                <span className={styles.avatar}>{user.name?.[0] || user.email?.[0]}</span>
+                {user.avatar ? (<Image src={`https://api.renttoolspeed.ru${user.avatar}`} alt="Avatar" unoptimized width={0} height={0} sizes="100vw" className={styles.avatarImageMain}/>) : (
+                  <span className={styles.avatar}>{user.name?.[0] || user.email?.[0]}</span>
+                )}
                 <div>
                   <h3 style={{ margin: 0, fontSize: 14, fontWeight: 600 }}>{user.name}</h3>
                   <p style={{ margin: 0, fontSize: 12, color: '#6b7280' }}>{user.email}</p>

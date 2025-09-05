@@ -45,12 +45,13 @@ import { useRouter } from 'next/navigation'
 import { useNotificationApi } from '@/providers/NotificationProvider'
 import { FavoriteGET } from '@/services/favorites-api'
 import { UserMeGET, UserMeLegalGET, UsersUpdateDataPATCH, UsersMeLegalPATCH, UsersOrdersGET } from '@/services/user-api'
-import { useAppSelector } from '@/shared/hooks/reduxHook'
+import { useAppDispatch, useAppSelector } from '@/shared/hooks/reduxHook'
 import { FavoritesTypes } from '@/shared/types/favorites/favorites.interface'
 import { UsersTypes } from '@/shared/types/users/users.interface'
 import { DraggerFileField } from '@/shared/ui/dragger-file-field/dragger-file-field'
 import { TextField } from '@/shared/ui/textfield/textfield'
 import { phoneFormat } from '@/shared/validation/auth/authValidate'
+import { setUser } from '@/store/features/auth/authSlice'
 
 import Loader from '../loading'
 
@@ -76,6 +77,7 @@ function fmtDate(d?: string) {
 export default function Profile() {
   const router = useRouter()
   const screens = Grid.useBreakpoint()
+  const dispatch = useAppDispatch()
   const [mounted, setMounted] = React.useState(false)
 
   React.useEffect(() => setMounted(true), [])
@@ -85,7 +87,7 @@ export default function Profile() {
   const api = useNotificationApi()
 
   const isAuth = useAppSelector((s) => s.auth.user !== null)
-  const [user, setUser] = React.useState<UsersTypes.Individual | null>(null)
+  const [userComponent, setUserComponent] = React.useState<UsersTypes.Individual | null>(null)
   const [loading, setLoading] = React.useState(false)
   const [party, setParty] = React.useState<'individual' | 'legal'>('individual')
   const [legal, setLegal] = React.useState<UsersTypes.Legal | null>(null)
@@ -99,6 +101,7 @@ export default function Profile() {
   const [activeTab, setActiveTab] = React.useState('profile')
 
   const [editingProfile, setEditingProfile] = React.useState(false)
+  const [submittedEditingProfile, setSubmittedEditingProfile] = React.useState(false)
   const [savingProfile, setSavingProfile] = React.useState(false)
   const [editingIndividual, setEditingIndividual] = React.useState(false)
   const [savingIndividual, setSavingIndividual] = React.useState(false)
@@ -112,19 +115,24 @@ export default function Profile() {
   const [avatarAction, setAvatarAction] = React.useState<'keep' | 'remove' | 'replace'>('keep')
 
   const avatarUrl = React.useMemo<string | null>(() => {
-    const a = user?.avatar
+    const a = userComponent?.avatar
 
     if (!a) return null
 
     return /^https?:\/\//.test(a) ? a : `https://api.renttoolspeed.ru${a}`
-  }, [user?.avatar])
+  }, [userComponent?.avatar])
 
   const loadUserIndividual = React.useCallback(async () => {
     setLoading(true)
     try {
       const response = await UserMeGET()
 
-      setUser(response)
+      if (response && submittedEditingProfile) {
+        dispatch(setUser({ ...response }))
+        console.log('good')
+      }
+
+      setUserComponent(response)
     } catch {
       api.error({ message: 'Не удалось загрузить профиль', placement: 'top' })
     } finally {
@@ -191,31 +199,31 @@ export default function Profile() {
   }, [isAuth, router])
 
   React.useEffect(() => {
-    if (editingProfile && user) {
+    if (editingProfile && userComponent) {
       formProfile.setFieldsValue({
-        last_name: user.last_name || '',
-        name: user.first_name || '',
-        middle_name: user.middle_name || '',
-        address: user.address || '',
-        phone: user.phone_number || '',
+        last_name: userComponent.last_name || '',
+        name: userComponent.first_name || '',
+        middle_name: userComponent.middle_name || '',
+        address: userComponent.address || '',
+        phone: userComponent.phone_number || '',
       })
     }
-  }, [editingProfile, user, formProfile])
+  }, [editingProfile, userComponent, formProfile])
 
   React.useEffect(() => {
-    if (editingIndividual && user) {
+    if (editingIndividual && userComponent) {
       formIndividual.setFieldsValue({
-        passport_series: user.passport_series || '',
-        passport_number: user.passport_number || '',
-        passport_issued_by: user.passport_issued_by || '',
-        passport_issued_date: user.passport_issued_date ? dayjs(user.passport_issued_date) : null,
-        passport_department: user.passport_department || '',
-        birth_date: user.birth_date ? dayjs(user.birth_date) : null,
-        birth_place: user.birth_place || '',
-        address: user.address || '',
+        passport_series: userComponent.passport_series || '',
+        passport_number: userComponent.passport_number || '',
+        passport_issued_by: userComponent.passport_issued_by || '',
+        passport_issued_date: userComponent.passport_issued_date ? dayjs(userComponent.passport_issued_date) : null,
+        passport_department: userComponent.passport_department || '',
+        birth_date: userComponent.birth_date ? dayjs(userComponent.birth_date) : null,
+        birth_place: userComponent.birth_place || '',
+        address: userComponent.address || '',
       })
     }
-  }, [editingIndividual, user, formIndividual])
+  }, [editingIndividual, userComponent, formIndividual])
 
   React.useEffect(() => {
     if (editingLegal) {
@@ -234,18 +242,18 @@ export default function Profile() {
   const profileFill = Math.min(
     100,
     [
-      user?.name || user?.first_name,
-      user?.last_name,
-      user?.phone_number,
-      user?.address,
-      user?.passport_series,
-      user?.passport_number,
+      userComponent?.name || userComponent?.first_name,
+      userComponent?.last_name,
+      userComponent?.phone_number,
+      userComponent?.address,
+      userComponent?.passport_series,
+      userComponent?.passport_number,
     ].filter(Boolean).length * 12,
   )
 
   const isIndividual = party === 'individual'
   const isLegal = party === 'legal'
-  const hasIndividual = Boolean(user?.is_complete)
+  const hasIndividual = Boolean(userComponent?.is_complete)
   const hasLegal = Boolean(legal?.is_complete)
   const legalUpdated = legal?.updated_at ? fmtDate(legal.updated_at.slice(0, 10)) : '—'
 
@@ -365,7 +373,7 @@ export default function Profile() {
                 <Tag className={styles.softTag}>Проверен</Tag>
               </Flex>
               <Space className={styles.heroHeadRight}>
-                <Tag className={styles.idTag}><span suppressContentEditableWarning>ID: {(user?.id || 0).toString().padStart(6, '0')}</span></Tag>
+                <Tag className={styles.idTag}><span suppressContentEditableWarning>ID: {(userComponent?.id || 0).toString().padStart(6, '0')}</span></Tag>
               </Space>
             </Flex>
 
@@ -381,13 +389,13 @@ export default function Profile() {
                           <Avatar icon={<UserOutlined />} size={isMd ? 72 : 56} className={styles.avatar} />
                         )}
                         <Space direction="vertical" size={2} className={styles.userText}>
-                          <Title level={4} className={styles.blockTitle}>{user?.full_name || user?.email || 'Пользователь'}</Title>
-                          <Text className={styles.subMuted}>{user?.email || '—'}</Text>
+                          <Title level={4} className={styles.blockTitle}>{userComponent?.full_name || userComponent?.email || 'Пользователь'}</Title>
+                          <Text className={styles.subMuted}>{userComponent?.email || '—'}</Text>
                         </Space>
                       </Flex>
                       <Descriptions column={isMd ? 2 : 1} className={styles.desc}>
-                        <Descriptions.Item label="Телефон">{user?.phone_number || '—'}</Descriptions.Item>
-                        <Descriptions.Item label="Адрес">{user?.address || '—'}</Descriptions.Item>
+                        <Descriptions.Item label="Телефон">{userComponent?.phone_number || '—'}</Descriptions.Item>
+                        <Descriptions.Item label="Адрес">{userComponent?.address || '—'}</Descriptions.Item>
                       </Descriptions>
                       <Space wrap className={styles.ctaRow}>
                         <Button icon={<ShopOutlined />} onClick={() => router.push('/catalog')} className={styles.btnGhost}>В каталог</Button>
@@ -479,6 +487,7 @@ export default function Profile() {
                         }}
                         >Отменить</Button>
                         <Button className={styles.btnPrimary} loading={savingProfile} onClick={async () => {
+                          setSubmittedEditingProfile(true)
                           try {
                             setSavingProfile(true)
                             const values = await formProfile.validateFields()
@@ -559,10 +568,10 @@ export default function Profile() {
                         <Card bordered className={styles.blockCard}>
                           <Title level={4} className={styles.blockTitle}>Контакты</Title>
                           <Descriptions column={1} className={styles.desc}>
-                            <Descriptions.Item label="ФИО">{user?.full_name || '—'}</Descriptions.Item>
-                            <Descriptions.Item label="Email">{user?.email || '—'}</Descriptions.Item>
-                            <Descriptions.Item label="Телефон">{user?.phone_number || '—'}</Descriptions.Item>
-                            <Descriptions.Item label="Адрес">{user?.address || '—'}</Descriptions.Item>
+                            <Descriptions.Item label="ФИО">{userComponent?.full_name || '—'}</Descriptions.Item>
+                            <Descriptions.Item label="Email">{userComponent?.email || '—'}</Descriptions.Item>
+                            <Descriptions.Item label="Телефон">{userComponent?.phone_number || '—'}</Descriptions.Item>
+                            <Descriptions.Item label="Адрес">{userComponent?.address || '—'}</Descriptions.Item>
                           </Descriptions>
                         </Card>
                       </Col>
@@ -744,17 +753,17 @@ export default function Profile() {
                               {!editingIndividual && (
                                 <>
                                   <Descriptions column={1} className={styles.desc}>
-                                    <Descriptions.Item label="ФИО">{user?.full_name || '—'}</Descriptions.Item>
-                                    <Descriptions.Item label="Паспорт: серия">{user?.passport_series || '—'}</Descriptions.Item>
-                                    <Descriptions.Item label="Паспорт: номер">{user?.passport_number || '—'}</Descriptions.Item>
-                                    <Descriptions.Item label="Кем выдан">{user?.passport_issued_by || '—'}</Descriptions.Item>
-                                    <Descriptions.Item label="Дата выдачи">{fmtDate(user?.passport_issued_date)}</Descriptions.Item>
-                                    <Descriptions.Item label="Код подразделения">{user?.passport_department || '—'}</Descriptions.Item>
-                                    <Descriptions.Item label="Дата рождения">{fmtDate(user?.birth_date)}</Descriptions.Item>
-                                    <Descriptions.Item label="Место рождения">{user?.birth_place || '—'}</Descriptions.Item>
-                                    {/* <Descriptions.Item label="ИНН">{user?.inn || '—'}</Descriptions.Item> */}
-                                    <Descriptions.Item label="Email">{user?.email || '—'}</Descriptions.Item>
-                                    <Descriptions.Item label="Телефон">{user?.phone_number || '—'}</Descriptions.Item>
+                                    <Descriptions.Item label="ФИО">{userComponent?.full_name || '—'}</Descriptions.Item>
+                                    <Descriptions.Item label="Паспорт: серия">{userComponent?.passport_series || '—'}</Descriptions.Item>
+                                    <Descriptions.Item label="Паспорт: номер">{userComponent?.passport_number || '—'}</Descriptions.Item>
+                                    <Descriptions.Item label="Кем выдан">{userComponent?.passport_issued_by || '—'}</Descriptions.Item>
+                                    <Descriptions.Item label="Дата выдачи">{fmtDate(userComponent?.passport_issued_date)}</Descriptions.Item>
+                                    <Descriptions.Item label="Код подразделения">{userComponent?.passport_department || '—'}</Descriptions.Item>
+                                    <Descriptions.Item label="Дата рождения">{fmtDate(userComponent?.birth_date)}</Descriptions.Item>
+                                    <Descriptions.Item label="Место рождения">{userComponent?.birth_place || '—'}</Descriptions.Item>
+                                    {/* <Descriptions.Item label="ИНН">{userComponent?.inn || '—'}</Descriptions.Item> */}
+                                    <Descriptions.Item label="Email">{userComponent?.email || '—'}</Descriptions.Item>
+                                    <Descriptions.Item label="Телефон">{userComponent?.phone_number || '—'}</Descriptions.Item>
                                   </Descriptions>
                                   <Space wrap>
                                     <Button className={styles.btnGhost} icon={<UserOutlined />} onClick={() => setEditingIndividual(true)}>

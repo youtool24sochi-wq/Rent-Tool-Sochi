@@ -7,6 +7,27 @@
   border-bottom: 1px solid rgba(249, 115, 22, 0.1);
 }
 
+.logoImage{
+  width: 36px !important;
+  height: 36px !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+}
+
+.avatarImageMain{
+  width: 36px !important;
+  height: 36px !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+}
+
+.avatarImage{
+  width: 96px !important;
+  height: 96px !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+}
+
 .container {
   max-width: 1280px; 
   margin: 0 auto;
