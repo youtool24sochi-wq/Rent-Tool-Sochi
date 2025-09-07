@@ -53,6 +53,11 @@
   background: #fff !important;
 }
 
+.field{
+  font-size: 16px !important;
+  height: auto !important;
+}
+
 .segment :global(.ant-radio-button-wrapper::before) {
  display: none !important;
 }
@@ -64,7 +69,11 @@
   box-shadow: 0 6px 16px rgba(249, 115, 22, 0.25) !important;
 }
 
-.picker { width: 100%; }
+.picker { 
+  width: 100% !important; 
+  height: 47.14px !important;
+  font-size: 16px !important;
+}
 
 .steps :global(.ant-steps-item-finish .ant-steps-item-icon) {
   border-color: #f97316 !important;

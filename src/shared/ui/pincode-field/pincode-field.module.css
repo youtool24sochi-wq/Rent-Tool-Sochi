@@ -21,3 +21,10 @@
   border-color: #f97316;
   box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2);
 }
+
+@media (max-width: 767px) {
+  .input{
+    width: 35px;
+    height: 44px;
+  }
+}

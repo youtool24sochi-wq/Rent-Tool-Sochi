@@ -422,7 +422,7 @@ export default function Profile() {
                               label="Фамилия"
                               rules={[{ required: true, message: 'Введите фамилию' }, { max: 50, message: 'До 50 символов' }]}
                             >
-                              <Input placeholder="Иванов" />
+                              <Input className={styles.inputField} placeholder="Иванов" />
                             </Form.Item>
                           </Col>
                           <Col xs={24} md={12}>
@@ -431,7 +431,7 @@ export default function Profile() {
                               label="Имя"
                               rules={[{ required: true, message: 'Введите имя' }, { max: 50, message: 'До 50 символов' }]}
                             >
-                              <Input placeholder="Иван" />
+                              <Input className={styles.inputField} placeholder="Иван" />
                             </Form.Item>
                           </Col>
                           <Col xs={24} md={12}>
@@ -440,7 +440,7 @@ export default function Profile() {
                               label="Отчество"
                               rules={[{ max: 50, message: 'До 50 символов' }]}
                             >
-                              <Input placeholder="Иванович" />
+                              <Input className={styles.inputField} placeholder="Иванович" />
                             </Form.Item>
                           </Col>
                           <Col xs={24} md={12}>
@@ -449,7 +449,7 @@ export default function Profile() {
                               label="Адрес"
                               rules={[{ max: 255, message: 'До 255 символов' }]}
                             >
-                              <Input placeholder="г. Бишкек, ул. ..." />
+                              <Input className={styles.inputField} placeholder="г. Бишкек, ул. ..." />
                             </Form.Item>
                           </Col>
                           <Col xs={24}><TextField isSimple={true} name="phone" placeholder="+7(AAA)BBB-CC-DD или 8(AAA)BBB-CC-DD"  rules={[phoneFormat]} label="Номер телефона"  /></Col>
@@ -784,7 +784,7 @@ export default function Profile() {
                                           label="Серия"
                                           rules={[{ pattern: /^\d{4}$/, message: '4 цифры' }, { max: 4, message: 'Не более 4 символов' }]}
                                         >
-                                          <Input placeholder="ID/АН" maxLength={4} />
+                                          <Input className={styles.inputField} placeholder="ID/АН" maxLength={4} />
                                         </Form.Item>
                                       </Col>
                                       <Col xs={12} md={8}>
@@ -793,7 +793,7 @@ export default function Profile() {
                                           label="Номер"
                                           rules={[{ pattern: /^\d{6}$/, message: '6 цифр' }, { max: 6, message: 'Не более 6 символов' }]}
                                         >
-                                          <Input placeholder="123456" maxLength={6} />
+                                          <Input className={styles.inputField} placeholder="123456" maxLength={6} />
                                         </Form.Item>
                                       </Col>
                                       <Col xs={24} md={8}>
@@ -802,7 +802,7 @@ export default function Profile() {
                                           label="Код подразделения"
                                           rules={[{ pattern: /^\d{3}-\d{3}$/, message: 'Формат XXX-XXX' }, { max: 7, message: 'Не более 7 символов' }]}
                                         >
-                                          <Input placeholder="000-000" maxLength={7} />
+                                          <Input className={styles.inputField} placeholder="000-000" maxLength={7} />
                                         </Form.Item>
                                       </Col>
                                       <Col xs={24} md={12}>
@@ -811,7 +811,7 @@ export default function Profile() {
                                           label="Кем выдан"
                                           rules={[{ required: true, message: 'Укажите кем выдан' }]}
                                         >
-                                          <Input placeholder="ГУВД ..." />
+                                          <Input className={styles.inputField} placeholder="ГУВД ..." />
                                         </Form.Item>
                                       </Col>
                                       <Col xs={24} md={12}>
@@ -820,7 +820,7 @@ export default function Profile() {
                                           label="Дата выдачи"
                                           rules={[{ required: true, message: 'Укажите дату выдачи' }]}
                                         >
-                                          <DatePicker style={{ width: '100%' }} format="DD.MM.YYYY" />
+                                          <DatePicker className={styles.datePickerField} style={{ width: '100%' }} format="DD.MM.YYYY" />
                                         </Form.Item>
                                       </Col>
                                       <Col xs={24} md={12}>
@@ -829,7 +829,7 @@ export default function Profile() {
                                           label="Дата рождения"
                                           rules={[{ required: true, message: 'Укажите дату рождения' }]}
                                         >
-                                          <DatePicker style={{ width: '100%' }} format="DD.MM.YYYY" />
+                                          <DatePicker className={styles.datePickerField} style={{ width: '100%' }} format="DD.MM.YYYY" />
                                         </Form.Item>
                                       </Col>
                                       <Col xs={24} md={12}>
@@ -838,7 +838,7 @@ export default function Profile() {
                                           label="Место рождения"
                                           rules={[{ required: true, message: 'Укажите место рождения' }]}
                                         >
-                                          <Input placeholder="г. ..." />
+                                          <Input className={styles.inputField} placeholder="г. ..." />
                                         </Form.Item>
                                       </Col>
                                       <Col xs={24}>
@@ -847,7 +847,7 @@ export default function Profile() {
                                           label="Адрес проживания"
                                           rules={[{ required: true, message: 'Укажите адрес' }]}
                                         >
-                                          <Input placeholder="г. Бишкек, ул. ..." />
+                                          <Input className={styles.inputField} placeholder="г. Бишкек, ул. ..." />
                                         </Form.Item>
                                       </Col>
                                     </Row>
@@ -934,7 +934,7 @@ export default function Profile() {
                                           label="Наименование"
                                           rules={[{ required: true, message: 'Укажите наименование' }, { max: 255, message: 'До 255 символов' }]}
                                         >
-                                          <Input placeholder="ООО «Ромашка»" />
+                                          <Input className={styles.inputField} placeholder="ООО «Ромашка»" />
                                         </Form.Item>
                                       </Col>
                                       <Col xs={24} md={12}>
@@ -943,7 +943,7 @@ export default function Profile() {
                                           label="Юридический адрес"
                                           rules={[{ required: true, message: 'Укажите юр. адрес' }]}
                                         >
-                                          <Input placeholder="Адрес" />
+                                          <Input className={styles.inputField} placeholder="Адрес" />
                                         </Form.Item>
                                       </Col>
                                       <Col xs={24} md={12}>
@@ -972,7 +972,7 @@ export default function Profile() {
                                                   }),
                                                 ]}
                                               >
-                                                <Input maxLength={9} disabled={!isLLC} />
+                                                <Input className={styles.inputField} maxLength={9} disabled={!isLLC} />
                                               </Form.Item>
                                             )
                                           }}
@@ -984,12 +984,12 @@ export default function Profile() {
                                           label="Расчётный счёт"
                                           rules={[{ required: true, message: 'Укажите счёт' }, { pattern: /^\d{20}$/, message: '20 цифр' }, { max: 20, message: 'До 20 символов' }]}
                                         >
-                                          <Input maxLength={20} />
+                                          <Input className={styles.inputField} maxLength={20} />
                                         </Form.Item>
                                       </Col>
                                       <Col xs={24} md={12}>
                                         <Form.Item name="inn" label="ИНН" rules={[{ pattern: /^\d{10,12}$/, message: '10–12 цифр' }, { max: 12, message: 'Не более 12 символов' }]} >
-                                          <Input placeholder="ИНН" maxLength={12} />
+                                          <Input className={styles.inputField} placeholder="ИНН" maxLength={12} />
                                         </Form.Item>
                                       </Col>
                                       <Col xs={24}>
@@ -998,7 +998,7 @@ export default function Profile() {
                                           label="ФИО директора"
                                           rules={[{ required: true, message: 'Укажите ФИО' }, { max: 255, message: 'До 255 символов' }]}
                                         >
-                                          <Input />
+                                          <Input className={styles.inputField} />
                                         </Form.Item>
                                       </Col>
                                     </Row>

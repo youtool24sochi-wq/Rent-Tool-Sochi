@@ -1,6 +1,7 @@
 .layout {
   margin-top: 3rem;
   margin-bottom: 3rem;
+  overflow-x: clip
 }
 
 .carousel {
@@ -229,4 +230,8 @@
     flex: 1 !important;
     width: 100% !important;
   }
+}
+
+@supports not (overflow: clip) {
+  .page { overflow-x: hidden; }
 }

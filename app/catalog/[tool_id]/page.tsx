@@ -219,148 +219,146 @@ export default function CatalogDetail() {
   }
 
   return (
-    <>
-      <motion.div className={`${styles.layout} container`} initial="hidden" animate="show" variants={fade}>
-        <Row gutter={[48, 48]}>
-          <Col xs={24} md={12}>
-            <Carousel
-              dots={catalog.images.length > 1}
-              arrows={catalog.images.length > 1}
-              className={styles.carousel}
-            >
-              {catalog.images.length ? (
-                catalog.images.map((item, index) => (
-                  <div key={index} className={styles.imgWrap}>
-                    <Image
-                      src={`https://api.renttoolspeed.ru${item}`}
-                      alt={catalog.name || 'Изображение инструмента'}
-                      className={styles.image}
-                      sizes="100vw"
-                      width={0}
-                      height={0}
-                    />
-                  </div>
-                ))
-              ) : (
-                <div className={styles.imgWrap}>
+    <motion.div className={`${styles.layout} container`} initial="hidden" animate="show" variants={fade}>
+      <Row gutter={[48, 48]}>
+        <Col xs={24} md={12}>
+          <Carousel
+            dots={catalog.images.length > 1}
+            arrows={catalog.images.length > 1}
+            className={styles.carousel}
+          >
+            {catalog.images.length ? (
+              catalog.images.map((item, index) => (
+                <div key={index} className={styles.imgWrap}>
                   <Image
-                    src={'https://renttoolspeed.ru/og/no-photo.png'}
-                    alt="Нет изображения"
+                    src={`https://api.renttoolspeed.ru${item}`}
+                    alt={catalog.name || 'Изображение инструмента'}
                     className={styles.image}
                     sizes="100vw"
                     width={0}
                     height={0}
                   />
                 </div>
-              )}
-            </Carousel>
-          </Col>
-
-          <Col xs={24} md={12}>
-            <div className={styles.info}>
-              <div className={styles.header}>
-                <h1 className={styles.title}>{catalog.name || 'Без названия'}</h1>
-                <Button
-                  type="text"
-                  shape="circle"
-                  className={`${styles.btnFavorite} ${isFavorite ? styles.btnFavoriteActive : ''}`}
-                  onClick={handleFavoriteToggle}
-                  disabled={!catalog.tool_id || favPending}
-                  icon={isFavorite ? <HeartFilled className={styles.favIcon}/> : <HeartOutlined className={styles.favIcon}/>}
+              ))
+            ) : (
+              <div className={styles.imgWrap}>
+                <Image
+                  src={'https://renttoolspeed.ru/og/no-photo.png'}
+                  alt="Нет изображения"
+                  className={styles.image}
+                  sizes="100vw"
+                  width={0}
+                  height={0}
                 />
               </div>
+            )}
+          </Carousel>
+        </Col>
 
-              <div className={styles.meta}>
-                {catalog?.category?.name && <Tag className={styles.tag}>{catalog.category.name}</Tag>}
-                {catalog?.brand && <Tag className={styles.tag}>{catalog.brand}</Tag>}
-                {catalog?.badge && <Tag className={styles.tag}>{catalog.badge}</Tag>}
-              </div>
+        <Col xs={24} md={12}>
+          <div className={styles.info}>
+            <div className={styles.header}>
+              <h1 className={styles.title}>{catalog.name || 'Без названия'}</h1>
+              <Button
+                type="text"
+                shape="circle"
+                className={`${styles.btnFavorite} ${isFavorite ? styles.btnFavoriteActive : ''}`}
+                onClick={handleFavoriteToggle}
+                disabled={!catalog.tool_id || favPending}
+                icon={isFavorite ? <HeartFilled className={styles.favIcon}/> : <HeartOutlined className={styles.favIcon}/>}
+              />
+            </div>
 
-              <div className={styles.priceBlock}>
-                {hasDiscount ? (
-                  <>
-                    <span className={styles.price}>{finalPrice} ₽/день</span>
-                    <span className={styles.priceOld}>{basePriceTrunc} ₽/день</span>
-                    <span className={styles.discountBadge}>-{Math.trunc(discountVal!)}%</span>
-                  </>
-                ) : basePrice > 0 ? (
-                  <span className={styles.price}>{basePriceTrunc} ₽/день</span>
-                ) : (
-                  <span className={styles.price}>Цена уточняется</span>
-                )}
-              </div>
+            <div className={styles.meta}>
+              {catalog?.category?.name && <Tag className={styles.tag}>{catalog.category.name}</Tag>}
+              {catalog?.brand && <Tag className={styles.tag}>{catalog.brand}</Tag>}
+              {catalog?.badge && <Tag className={styles.tag}>{catalog.badge}</Tag>}
+            </div>
 
-              {catalog.description && <p className={styles.desc}>{catalog.description}</p>}
-
-              {specsObj && (
-                <div className={styles.specs}>
-                  <List
-                    size="small"
-                    dataSource={Object.entries(specsObj)}
-                    renderItem={([k, v]) => (
-                      <List.Item className={styles.specItem}>
-                        <span className={styles.specKey}>{k}</span>
-                        <span className={styles.specVal}>{String(v ?? '')}</span>
-                      </List.Item>
-                    )}
-                  />
-                </div>
-              )}
-
-              {!catalog?.is_available ? (
-                <Tooltip title="Инструмент недоступен">
-                  <Button
-                    type="primary"
-                    size="large"
-                    className={styles.btnPrimary}
-                    disabled={true}
-                  >
-                    {isAdded ? 'В корзине' : 'Добавить в корзину'}
-                  </Button>
-                </Tooltip>
+            <div className={styles.priceBlock}>
+              {hasDiscount ? (
+                <>
+                  <span className={styles.price}>{finalPrice} ₽/день</span>
+                  <span className={styles.priceOld}>{basePriceTrunc} ₽/день</span>
+                  <span className={styles.discountBadge}>-{Math.trunc(discountVal!)}%</span>
+                </>
+              ) : basePrice > 0 ? (
+                <span className={styles.price}>{basePriceTrunc} ₽/день</span>
               ) : (
+                <span className={styles.price}>Цена уточняется</span>
+              )}
+            </div>
+
+            {catalog.description && <p className={styles.desc}>{catalog.description}</p>}
+
+            {specsObj && (
+              <div className={styles.specs}>
+                <List
+                  size="small"
+                  dataSource={Object.entries(specsObj)}
+                  renderItem={([k, v]) => (
+                    <List.Item className={styles.specItem}>
+                      <span className={styles.specKey}>{k}</span>
+                      <span className={styles.specVal}>{String(v ?? '')}</span>
+                    </List.Item>
+                  )}
+                />
+              </div>
+            )}
+
+            {!catalog?.is_available ? (
+              <Tooltip title="Инструмент недоступен">
                 <Button
                   type="primary"
                   size="large"
                   className={styles.btnPrimary}
-                  disabled={!catalog.tool_id || isAdded}
-                  onClick={() => !isAdded && handleCartAdd(catalog.tool_id)}
+                  disabled={true}
                 >
                   {isAdded ? 'В корзине' : 'Добавить в корзину'}
                 </Button>
-              )}
+              </Tooltip>
+            ) : (
+              <Button
+                type="primary"
+                size="large"
+                className={styles.btnPrimary}
+                disabled={!catalog.tool_id || isAdded}
+                onClick={() => !isAdded && handleCartAdd(catalog.tool_id)}
+              >
+                {isAdded ? 'В корзине' : 'Добавить в корзину'}
+              </Button>
+            )}
 
-              <div className={styles.shareBlock}>
-                <span className={styles.shareLabel}>Поделиться</span>
-                <div className={styles.shareBtns}>
-                  <Button
-                    type="primary"
-                    size="large"
-                    className={`${styles.shareBtn} ${styles.shareBtnTg}`}
-                    icon={<TelegramOutlined />}
-                    onClick={() => handleShare('telegram')}
-                    aria-label="Поделиться в Telegram"
-                  >
-                    Telegram
-                  </Button>
+            <div className={styles.shareBlock}>
+              <span className={styles.shareLabel}>Поделиться</span>
+              <div className={styles.shareBtns}>
+                <Button
+                  type="primary"
+                  size="large"
+                  className={`${styles.shareBtn} ${styles.shareBtnTg}`}
+                  icon={<TelegramOutlined />}
+                  onClick={() => handleShare('telegram')}
+                  aria-label="Поделиться в Telegram"
+                >
+                  Telegram
+                </Button>
 
-                  <Button
-                    type="primary"
-                    size="large"
-                    className={`${styles.shareBtn} ${styles.shareBtnWa}`}
-                    icon={<WhatsAppOutlined />}
-                    onClick={() => handleShare('whatsapp')}
-                    aria-label="Поделиться в WhatsApp"
-                  >
-                    WhatsApp
-                  </Button>
-                </div>
+                <Button
+                  type="primary"
+                  size="large"
+                  className={`${styles.shareBtn} ${styles.shareBtnWa}`}
+                  icon={<WhatsAppOutlined />}
+                  onClick={() => handleShare('whatsapp')}
+                  aria-label="Поделиться в WhatsApp"
+                >
+                  WhatsApp
+                </Button>
               </div>
             </div>
-          </Col>
-        </Row>
-      </motion.div>
+          </div>
+        </Col>
+      </Row>
       {isAuth ? <CartPopover router={router} api={api} handleDeleteCart={handleDeleteCart} carts={carts} cartsLoading={cartsLoading}/> : null}
-    </>
+    </motion.div>
   )
 }

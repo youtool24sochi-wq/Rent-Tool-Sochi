@@ -318,15 +318,15 @@ export default function Checkout() {
       <div className={styles.sectionHeader}>Ваши данные</div>
       <Form form={form} layout="vertical" className={styles.form}>
         <Row gutter={[16, 12]}>
-          <Col xs={24} md={8}><TextField name="last_name" label="Фамилия" rules={[{ required: true }, { max: 50 }]} readOnly={readonlyIndividual} /></Col>
-          <Col xs={24} md={8}><TextField name="first_name" label="Имя" rules={[{ required: true }, { max: 50 }]} readOnly={readonlyIndividual} /></Col>
-          <Col xs={24} md={8}><TextField name="middle_name" label="Отчество" rules={[{ required: true }, { max: 50 }]} readOnly={readonlyIndividual} /></Col>
-          <Col xs={24}><TextField name="address" label="Адрес прописки" rules={[{ required: true }]} readOnly={readonlyIndividual} /></Col>
-          <Col xs={24} md={8}><TextField name="passport_series" label="Серия паспорта" maxLength={4} rules={[{ required: true }, { pattern: /^\d{4}$/, message: '4 цифры' }]} readOnly={readonlyIndividual} /></Col>
-          <Col xs={24} md={8}><TextField name="passport_number" label="Номер паспорта" maxLength={6} rules={[{ required: true }, { pattern: /^\d{6}$/, message: '6 цифр' }]} readOnly={readonlyIndividual} /></Col>
-          <Col xs={24} md={8}><TextField name="passport_department" label="Код подразделения" maxLength={7} rules={[{ required: true }, { pattern: /^\d{3}-\d{3}$/, message: 'Код подразделения должен быть в формате XXX-XXX' }]} readOnly={readonlyIndividual} /></Col>
-          <Col xs={24}><TextField name="passport_issued_by" label="Кем выдан паспорт" rules={[{ required: true }]} readOnly={readonlyIndividual} /></Col>
-          {/* <Col xs={24}><TextField name="inn" label="ИНН" maxLength={12} placeholder="ИНН" readOnly={readonlyIndividual} rules={[{ pattern: /^\d{10,12}$/, message: '10–12 цифр' }, { max: 12, message: 'Не более 12 символов' }]}/></Col> */}
+          <Col xs={24} md={8}><TextField className={styles.field} name="last_name" label="Фамилия" rules={[{ required: true }, { max: 50 }]} readOnly={readonlyIndividual} /></Col>
+          <Col xs={24} md={8}><TextField className={styles.field} name="first_name" label="Имя" rules={[{ required: true }, { max: 50 }]} readOnly={readonlyIndividual} /></Col>
+          <Col xs={24} md={8}><TextField className={styles.field} name="middle_name" label="Отчество" rules={[{ required: true }, { max: 50 }]} readOnly={readonlyIndividual} /></Col>
+          <Col xs={24}><TextField className={styles.field} name="address" label="Адрес прописки" rules={[{ required: true }]} readOnly={readonlyIndividual} /></Col>
+          <Col xs={24} md={8}><TextField className={styles.field} name="passport_series" label="Серия паспорта" maxLength={4} rules={[{ required: true }, { pattern: /^\d{4}$/, message: '4 цифры' }]} readOnly={readonlyIndividual} /></Col>
+          <Col xs={24} md={8}><TextField className={styles.field} name="passport_number" label="Номер паспорта" maxLength={6} rules={[{ required: true }, { pattern: /^\d{6}$/, message: '6 цифр' }]} readOnly={readonlyIndividual} /></Col>
+          <Col xs={24} md={8}><TextField className={styles.field} name="passport_department" label="Код подразделения" maxLength={7} rules={[{ required: true }, { pattern: /^\d{3}-\d{3}$/, message: 'Код подразделения должен быть в формате XXX-XXX' }]} readOnly={readonlyIndividual} /></Col>
+          <Col xs={24}><TextField className={styles.field} name="passport_issued_by" label="Кем выдан паспорт" rules={[{ required: true }]} readOnly={readonlyIndividual} /></Col>
+          {/* <Col xs={24}><TextField className={styles.field} name="inn" label="ИНН" maxLength={12} placeholder="ИНН" readOnly={readonlyIndividual} rules={[{ pattern: /^\d{10,12}$/, message: '10–12 цифр' }, { max: 12, message: 'Не более 12 символов' }]}/></Col> */}
           <Col xs={24} md={12}>
             <Form.Item name="passport_issued_date" label="Дата выдачи паспорта" rules={[{ required: true }]}>
               <DatePicker className={styles.picker} format="DD.MM.YYYY" disabled={readonlyIndividual} />
@@ -337,9 +337,9 @@ export default function Checkout() {
               <DatePicker className={styles.picker} format="DD.MM.YYYY" disabled={readonlyIndividual} />
             </Form.Item>
           </Col>
-          <Col xs={24}><TextField name="birth_place" label="Место рождения" rules={[{ required: true }]} readOnly={readonlyIndividual} /></Col>
-          {me?.phone_number ? null : ( <Col xs={24}><TextField name="phone_number" rules={registerRules.phone} label="Номер телефона"  /></Col>)}
-          <Col xs={24}><TextField name="work_address" label="Адрес работы" readOnly={isLocked} /></Col>
+          <Col xs={24}><TextField className={styles.field} name="birth_place" label="Место рождения" rules={[{ required: true }]} readOnly={readonlyIndividual} /></Col>
+          {me?.phone_number ? null : ( <Col xs={24}><TextField className={styles.field} name="phone_number" rules={registerRules.phone} label="Номер телефона"  /></Col>)}
+          <Col xs={24}><TextField className={styles.field} name="work_address" label="Адрес работы" readOnly={isLocked} /></Col>
         </Row>
       </Form>
     </Card>
@@ -375,7 +375,7 @@ export default function Checkout() {
           <Row gutter={[16, 12]}>
             {me?.phone_number ? null : (
               <Col xs={24} md={8}>
-                <TextField name="phone" label="Телефон" rules={registerRules.phone} readOnly={readonlyLegal} />
+                <TextField className={styles.field} name="phone" label="Телефон" rules={registerRules.phone} readOnly={readonlyLegal} />
               </Col>
             )}
 
@@ -394,13 +394,14 @@ export default function Checkout() {
               </Form.Item>
             </Col>
 
-            <Col xs={24}><TextField name="company_name" label="Название компании" rules={[{ required: true }, { max: 255 }]} readOnly={readonlyLegal} /></Col>
-            <Col xs={24}><TextField name="legal_address" label="Юридический адрес" rules={[{ required: true }]} readOnly={readonlyLegal} /></Col>
-            <Col xs={24} md={8}><TextField name="inn" label="ИНН" maxLength={12} rules={[{ required: true }, { pattern: /^\d{10,12}$/, message: '10–12 цифр' }]} readOnly={readonlyLegal} /></Col>
+            <Col xs={24}><TextField className={styles.field} name="company_name" label="Название компании" rules={[{ required: true }, { max: 255 }]} readOnly={readonlyLegal} /></Col>
+            <Col xs={24}><TextField className={styles.field} name="legal_address" label="Юридический адрес" rules={[{ required: true }]} readOnly={readonlyLegal} /></Col>
+            <Col xs={24} md={8}><TextField className={styles.field} name="inn" label="ИНН" maxLength={12} rules={[{ required: true }, { pattern: /^\d{10,12}$/, message: '10–12 цифр' }]} readOnly={readonlyLegal} /></Col>
 
             {!isIP && (
               <Col xs={24} md={8}>
                 <TextField
+                  className={styles.field}
                   name="kpp"
                   label="КПП"
                   maxLength={9}
@@ -410,9 +411,9 @@ export default function Checkout() {
               </Col>
             )}
 
-            <Col xs={24} md={isIP ? 16 : 8}><TextField name="bank_account" label="Расчётный счёт" maxLength={20} rules={[{ required: true }, { pattern: /^\d{20}$/, message: '20 цифр' }]} readOnly={readonlyLegal} /></Col>
-            <Col xs={24}><TextField name="director_full_name" label="ФИО директора/ИП" rules={[{ required: true }, { max: 255 }]} readOnly={readonlyLegal} /></Col>
-            <Col xs={24}><TextField name="work_address" label="Адрес работы инструмента" readOnly={isLocked} /></Col>
+            <Col xs={24} md={isIP ? 16 : 8}><TextField className={styles.field} name="bank_account" label="Расчётный счёт" maxLength={20} rules={[{ required: true }, { pattern: /^\d{20}$/, message: '20 цифр' }]} readOnly={readonlyLegal} /></Col>
+            <Col xs={24}><TextField className={styles.field} name="director_full_name" label="ФИО директора/ИП" rules={[{ required: true }, { max: 255 }]} readOnly={readonlyLegal} /></Col>
+            <Col xs={24}><TextField className={styles.field} name="work_address" label="Адрес работы инструмента" readOnly={isLocked} /></Col>
           </Row>
         </Form>
       </Card>

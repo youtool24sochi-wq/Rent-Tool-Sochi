@@ -5,6 +5,7 @@
     radial-gradient(1200px 600px at -10% 20%, rgba(249, 115, 22, 0.08) 0%, rgba(249, 115, 22, 0) 60%),
     radial-gradient(900px 520px at 110% 60%, rgba(56, 189, 248, 0.10) 0%, rgba(56, 189, 248, 0) 65%),
     linear-gradient(135deg, #fff7ed 0%, #ffedd5 38%, #f1f5f9 100%);
+  overflow-x: clip
 }
 
 .bgLayer {
@@ -192,4 +193,8 @@
 
 @media (max-width: 640px) {
   .tool7, .tool8, .tool10, .tool12 { display: none; }
+}
+
+@supports not (overflow: clip) {
+  .page { overflow-x: hidden; }
 }
