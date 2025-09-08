@@ -183,7 +183,7 @@ export default function Home() {
           </svg>
         </div>
 
-        <motion.div variants={fadeUp} className={`${styles.container} container`}>
+        <motion.div variants={fadeUp} className={`${styles.heroContainer} container`}>
           <motion.h1 className={styles.heading}>
             <motion.span
               initial={{ opacity: 0, y: 50 }}

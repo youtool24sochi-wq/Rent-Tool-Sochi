@@ -3,6 +3,8 @@
   overflow: hidden;
   padding-top: 8rem;
   padding-bottom: 7rem;
+  width: 100%;
+  max-width: 100vw;
 }
 
 .videoBg {
@@ -36,13 +38,16 @@
   }
 }
 
-.container {
+.heroContainer {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .heading {
@@ -190,11 +195,43 @@
   }
 }
 
+/* Мобильные анимации для бренда */
+@keyframes mobileBrandPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  25% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  75% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes mobileBrandGlow {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 5px rgba(249, 115, 22, 0.3);
+  }
+  50% {
+    opacity: 0.85;
+    text-shadow: 0 0 15px rgba(249, 115, 22, 0.8), 0 0 25px rgba(249, 115, 22, 0.4);
+  }
+}
+
 .searchWrap {
   position: relative;
   width: 100%;
   max-width: 660px;
   margin-bottom: 2rem;
+  box-sizing: border-box;
 }
 
 .searchInput {
@@ -206,6 +243,7 @@
   line-height: 1.25;
   color: #111827;
   background: rgba(255, 255, 255, .9);
+  box-sizing: border-box;
 }
 
 .searchInput:focus {
@@ -281,6 +319,8 @@
   display: flex;
   gap: 2.5rem;
   margin-top: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .statBox {
@@ -292,6 +332,8 @@
   border: 1px solid rgba(249, 115, 22, 0.2);
   transition: all 0.3s ease;
   cursor: pointer;
+  min-width: 140px;
+  flex: 0 1 auto;
 }
 
 .statBox:hover {
@@ -312,6 +354,61 @@
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.9);
   font-weight: 500;
+}
+
+/* Адаптивность для статистических блоков */
+@media (max-width: 768px) {
+  .statsRow {
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  .statBox {
+    min-width: 120px;
+    padding: 0.75rem;
+  }
+  
+  .statVal {
+    font-size: 1.5rem;
+  }
+  
+  .statLbl {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .statsRow {
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .statBox {
+    min-width: 100px;
+    padding: 0.65rem 0.5rem;
+  }
+  
+  .statVal {
+    font-size: 1.3rem;
+  }
+  
+  .statLbl {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .statsRow {
+    gap: 0.75rem;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .statBox {
+    min-width: 160px;
+    width: 100%;
+    max-width: 200px;
+  }
 }
 
 .particles svg {
@@ -725,18 +822,73 @@
 
 @media (max-width: 768px) {
   .lead {
-    font-size: 1rem;
+    font-size: 1.125rem;
   }
   .heading {
     font-size: 3rem;
   }
+  
+  .searchInput {
+    padding: 14px 120px 14px 1rem;
+    font-size: 16px;
+  }
+  
+  .searchBtn {
+    width: 60px !important;
+    height: 32px !important;
+  }
+  
+  .accent {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: #f97316 !important;
+    color: #f97316 !important;
+    text-shadow: none !important;
+    filter: none !important;
+    animation: none !important;
+  }
+  
+  .brand {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: #f97316 !important;
+    color: #f97316 !important;
+    filter: none !important;
+    animation: mobileBrandPulse 2s ease-in-out infinite !important;
+  }
+  
+  .brand::after {
+    display: none !important;
+  }
+  
+  /* Упрощенные искорки на мобильных */
+  .sparkles {
+    display: block !important;
+  }
+  
+  .sparkle {
+    width: 4px !important;
+    height: 4px !important;
+    box-shadow: 
+      0 0 4px #f97316,
+      0 0 8px #f97316 !important;
+  }
+  
+  .sparkle::before,
+  .sparkle::after {
+    width: 1px !important;
+    height: 8px !important;
+  }
+}
   .faqList :global(.ant-collapse-item .ant-collapse-header .ant-collapse-header-text) {
     font-size: 1rem !important; 
   }
   .faqList :global(.ant-collapse-content-box) {
     font-size: 0.7rem !important;
   }
-}
+  
 
 @media (max-width: 768px) {
   .yandexMapContainer iframe {
@@ -771,10 +923,49 @@
     height: 100%;
   }
   .lead {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
   .heading {
     font-size: 2.8rem;
+  }
+  
+  /* Еще более простые стили для маленьких экранов */
+  .accent {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: #f97316 !important;
+    color: #f97316 !important;
+    text-shadow: none !important;
+    filter: none !important;
+    animation: none !important;
+    font-weight: 800 !important;
+  }
+  
+  .brand {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: #f97316 !important;
+    color: #f97316 !important;
+    filter: none !important;
+    animation: mobileBrandGlow 1.8s ease-in-out infinite !important;
+    font-weight: 700 !important;
+  }
+  
+  /* Еще более маленькие искорки */
+  .sparkle {
+    width: 3px !important;
+    height: 3px !important;
+    box-shadow: 
+      0 0 3px #f97316,
+      0 0 6px #f97316 !important;
+  }
+  
+  .sparkle::before,
+  .sparkle::after {
+    width: 1px !important;
+    height: 6px !important;
   }
   
   .yandexMapContainer iframe {
