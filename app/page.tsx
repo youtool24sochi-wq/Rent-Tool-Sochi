@@ -18,8 +18,6 @@ import {
   Row,
   Col,
   Tooltip,
-  Avatar,
-  Rate,
   Collapse,
 } from 'antd'
 import { motion } from 'framer-motion'
@@ -192,25 +190,25 @@ export default function Home() {
             >
               Аренда{' '}
             </motion.span>
-            <motion.span 
+            <motion.span
               className={styles.accent}
               initial={{ opacity: 0, scale: 0.8, rotateX: -90 }}
               animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-              transition={{ 
-                duration: 0.8, 
+              transition={{
+                duration: 0.8,
                 delay: 0.5,
-                type: "spring",
-                stiffness: 200
+                type: 'spring',
+                stiffness: 200,
               }}
               whileHover={{
                 scale: 1.05,
-                textShadow: "0 0 40px rgba(249, 115, 22, 0.8)",
-                transition: { duration: 0.3 }
+                textShadow: '0 0 40px rgba(249, 115, 22, 0.8)',
+                transition: { duration: 0.3 },
               }}
             >
               <span className={styles.sparkleText}>
                 инструментов
-                <motion.div 
+                <motion.div
                   className={styles.sparkles}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -221,17 +219,17 @@ export default function Home() {
                       key={i}
                       className={styles.sparkle}
                       initial={{ scale: 0, rotate: 0 }}
-                      animate={{ 
+                      animate={{
                         scale: [0, 1, 0],
                         rotate: [0, 180, 360],
                         x: [0, Math.random() * 30 - 15],
-                        y: [0, Math.random() * 30 - 15]
+                        y: [0, Math.random() * 30 - 15],
                       }}
                       transition={{
                         duration: 1.5,
                         delay: i * 0.3 + 1.2,
                         repeat: Infinity,
-                        repeatDelay: 4
+                        repeatDelay: 4,
                       }}
                     />
                   ))}
@@ -247,7 +245,7 @@ export default function Home() {
             </motion.span>
           </motion.h1>
 
-          <motion.p 
+          <motion.p
             className={styles.lead}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -260,14 +258,14 @@ export default function Home() {
             >
               Профессиональный инструмент. Честные цены. Отсутствие залога и всё это —
             </motion.span>
-            <motion.span 
+            <motion.span
               className={styles.brand}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ 
-                duration: 0.4, 
+              transition={{
+                duration: 0.4,
                 delay: 1.3,
-                ease: "easeOut"
+                ease: 'easeOut',
               }}
             >
               {' '}RentToolSochi
@@ -303,46 +301,46 @@ export default function Home() {
           </motion.div>
 
           <motion.div variants={fadeUp} className={styles.statsRow}>
-          <motion.div 
+            <motion.div
               className={styles.statBox}
               whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
             >
-              <motion.div 
+              <motion.div
                 className={styles.statVal}
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.8, duration: 0.5, type: "spring" }}
+                transition={{ delay: 0.8, duration: 0.5, type: 'spring' }}
               >
                 100+
               </motion.div>
               <div className={styles.statLbl}>Инструментов</div>
             </motion.div>
-            <motion.div 
+            <motion.div
               className={styles.statBox}
               whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
             >
-              <motion.div 
+              <motion.div
                 className={styles.statVal}
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.0, duration: 0.5, type: "spring" }}
+                transition={{ delay: 1.0, duration: 0.5, type: 'spring' }}
               >
                 200+
               </motion.div>
               <div className={styles.statLbl}>Клиентов</div>
             </motion.div>
-            <motion.div 
+            <motion.div
               className={styles.statBox}
               whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
             >
-              <motion.div 
+              <motion.div
                 className={styles.statVal}
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.2, duration: 0.5, type: "spring" }}
+                transition={{ delay: 1.2, duration: 0.5, type: 'spring' }}
               >
                 24/7
               </motion.div>
@@ -418,63 +416,63 @@ export default function Home() {
             whileInView="show"
             viewport={{ once: true, amount: 0.2 }}
           >
-          <Row
-            gutter={[24, 24]}
-            justify="center"
-          >
-            <Col xs={24} md={8}>
+            <Row
+              gutter={[24, 24]}
+              justify="center"
+            >
+              <Col xs={24} md={8}>
                 <motion.div variants={fadeUp}>
-                <Card className={styles.benefitCard} bordered={false}>
+                  <Card className={styles.benefitCard} bordered={false}>
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 300 }}
+                      transition={{ type: 'spring', stiffness: 300 }}
                     >
                       <Tooltip className={styles.tootlip} title="Гарантия качества">
-                      <SafetyCertificateOutlined className={styles.benefitIcon} />
+                        <SafetyCertificateOutlined className={styles.benefitIcon} />
                       </Tooltip>
                     </motion.div>
-                  <h3 className={styles.benefitCardTitle}>Гарантия качества</h3>
-                  <p className={styles.benefitCardDesc}>
-                    Все инструменты проходят регулярное техническое обслуживание
-                  </p>
-                </Card>
-              </motion.div>
-            </Col>
+                    <h3 className={styles.benefitCardTitle}>Гарантия качества</h3>
+                    <p className={styles.benefitCardDesc}>
+                      Все инструменты проходят регулярное техническое обслуживание
+                    </p>
+                  </Card>
+                </motion.div>
+              </Col>
 
-            <Col xs={24} md={8}>
+              <Col xs={24} md={8}>
                 <motion.div variants={fadeUp}>
-                <Card className={styles.benefitCard} bordered={false}>
+                  <Card className={styles.benefitCard} bordered={false}>
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: -5 }}
-                      transition={{ type: "spring", stiffness: 300 }}
+                      transition={{ type: 'spring', stiffness: 300 }}
                     >
                       <Tooltip className={styles.tootlip} title="Быстрая доставка">
-                      <ClockCircleOutlined className={styles.benefitIcon} />
+                        <ClockCircleOutlined className={styles.benefitIcon} />
                       </Tooltip>
                     </motion.div>
-                  <h3 className={styles.benefitCardTitle}>Быстрая доставка</h3>
-                  <p className={styles.benefitCardDesc}>Доставляем в течение 1‑2 часов по всему Сочи</p>
-                </Card>
-              </motion.div>
-            </Col>
+                    <h3 className={styles.benefitCardTitle}>Быстрая доставка</h3>
+                    <p className={styles.benefitCardDesc}>Доставляем в течение 1‑2 часов по всему Сочи</p>
+                  </Card>
+                </motion.div>
+              </Col>
 
-            <Col xs={24} md={8}>
+              <Col xs={24} md={8}>
                 <motion.div variants={fadeUp}>
-                <Card className={styles.benefitCard} bordered={false}>
+                  <Card className={styles.benefitCard} bordered={false}>
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 300 }}
+                      transition={{ type: 'spring', stiffness: 300 }}
                     >
                       <Tooltip className={styles.tootlip} title="24/7 поддержка">
-                      <CustomerServiceOutlined className={styles.benefitIcon} />
+                        <CustomerServiceOutlined className={styles.benefitIcon} />
                       </Tooltip>
                     </motion.div>
-                  <h3 className={styles.benefitCardTitle}>24/7 поддержка</h3>
-                  <p className={styles.benefitCardDesc}>Круглосуточная техническая поддержка и консультации</p>
-                </Card>
-              </motion.div>
-            </Col>
-          </Row>
+                    <h3 className={styles.benefitCardTitle}>24/7 поддержка</h3>
+                    <p className={styles.benefitCardDesc}>Круглосуточная техническая поддержка и консультации</p>
+                  </Card>
+                </motion.div>
+              </Col>
+            </Row>
           </motion.div>
         </div>
       </section>
@@ -493,7 +491,7 @@ export default function Home() {
 
           <Row gutter={[32, 32]} justify="center">
             <Col xs={24} lg={12}>
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
@@ -505,32 +503,32 @@ export default function Home() {
                     <p className={styles.mapCardDesc}>Найдите нас на Яндекс.Картах</p>
                   </div>
                   <div className={styles.yandexMapContainer}>
-                    <div style={{position:"relative", overflow:"hidden"}}>
-                      <a 
-                        href="https://yandex.ru/maps/org/youtool/82146067837/?utm_medium=mapframe&utm_source=maps" 
-                        style={{color:"#eee", fontSize:"12px", position:"absolute", top:"0px"}}
+                    <div style={{ position:'relative', overflow:'hidden' }}>
+                      <a
+                        href="https://yandex.ru/maps/org/youtool/82146067837/?utm_medium=mapframe&utm_source=maps"
+                        style={{ color:'#eee', fontSize:'12px', position:'absolute', top:'0px' }}
                       >
                         YouTool
                       </a>
-                      <a 
-                        href="https://yandex.ru/maps/239/sochi/category/rental/184108219/?utm_medium=mapframe&utm_source=maps" 
-                        style={{color:"#eee", fontSize:"12px", position:"absolute", top:"14px"}}
+                      <a
+                        href="https://yandex.ru/maps/239/sochi/category/rental/184108219/?utm_medium=mapframe&utm_source=maps"
+                        style={{ color:'#eee', fontSize:'12px', position:'absolute', top:'14px' }}
                       >
                         Пункт проката в Сочи
                       </a>
-                      <a 
-                        href="https://yandex.ru/maps/239/sochi/category/construction_tools/184107567/?utm_medium=mapframe&utm_source=maps" 
-                        style={{color:"#eee", fontSize:"12px", position:"absolute", top:"28px"}}
+                      <a
+                        href="https://yandex.ru/maps/239/sochi/category/construction_tools/184107567/?utm_medium=mapframe&utm_source=maps"
+                        style={{ color:'#eee', fontSize:'12px', position:'absolute', top:'28px' }}
                       >
                         Строительный инструмент в Сочи
                       </a>
-                      <iframe 
-                        src="https://yandex.ru/map-widget/v1/?display-text=%D0%B0%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0&filter=alternate_vertical%3ARequestWindow&ll=39.739781%2C43.602683&mode=search&oid=82146067837&ol=biz&sctx=ZAAAAAgBEAAaKAoSCVhzgGCO3ENAERTQRNjwykVAEhIJHViOkIE81j8R95ScE3toyz8iBgABAgMEBSgKOABA8YAHSAFiHnJlbGV2X2V4cGVyaW1lbnQ9c2ltaWxhcnNfZXhwM2IncmVtb3ZlX3NuaXBwZXQ9cmVsYXRlZF9hZHZlcnRzXzFvcmcvMS54agJydZ0BzczMPaABAKgBAL0BebQ7OcIBSaeL%2BMKjBP2KpoKyAqWmkOGvAaCJlpc01drm974D0LTjsaXk%2FJlt38jRu70Do46knJYG1uaOnKgDisiE%2BZsFy4yoxYkGv4%2FDzB2CAiPQsNGA0LXQvdC00LAg0LjQvdGB0YLRgNGD0LzQtdC90YLQsIoCJzE4NDEwNzU1MSQxODQxMDgyMTkkMTg0MTA3NTY3JDE4NDEwNzU3MZICAJoCDGRlc2t0b3AtbWFwc6oCMTM1MTcxNzM0NDI5LDE3OTE0NTExNDU0NiwyMDQ5NDc4MTA5NzgsODcwOTkxMDI3NjTaAigKEgkMObaeIeBDQBFc79cOf81FQBISCQA%2BKZMa2rA%2FEQAoUIvBw6Q%2F4AIB&sll=39.746353%2C43.604771&sspn=0.034791%2C0.021434&text=%D0%B0%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0&z=15.32" 
-                        width="100%" 
-                        height="400" 
-                        frameBorder="0" 
-                        allowFullScreen={true} 
-                        style={{position:"relative", borderRadius: "12px"}}
+                      <iframe
+                        src="https://yandex.ru/map-widget/v1/?display-text=%D0%B0%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0&filter=alternate_vertical%3ARequestWindow&ll=39.739781%2C43.602683&mode=search&oid=82146067837&ol=biz&sctx=ZAAAAAgBEAAaKAoSCVhzgGCO3ENAERTQRNjwykVAEhIJHViOkIE81j8R95ScE3toyz8iBgABAgMEBSgKOABA8YAHSAFiHnJlbGV2X2V4cGVyaW1lbnQ9c2ltaWxhcnNfZXhwM2IncmVtb3ZlX3NuaXBwZXQ9cmVsYXRlZF9hZHZlcnRzXzFvcmcvMS54agJydZ0BzczMPaABAKgBAL0BebQ7OcIBSaeL%2BMKjBP2KpoKyAqWmkOGvAaCJlpc01drm974D0LTjsaXk%2FJlt38jRu70Do46knJYG1uaOnKgDisiE%2BZsFy4yoxYkGv4%2FDzB2CAiPQsNGA0LXQvdC00LAg0LjQvdGB0YLRgNGD0LzQtdC90YLQsIoCJzE4NDEwNzU1MSQxODQxMDgyMTkkMTg0MTA3NTY3JDE4NDEwNzU3MZICAJoCDGRlc2t0b3AtbWFwc6oCMTM1MTcxNzM0NDI5LDE3OTE0NTExNDU0NiwyMDQ5NDc4MTA5NzgsODcwOTkxMDI3NjTaAigKEgkMObaeIeBDQBFc79cOf81FQBISCQA%2BKZMa2rA%2FEQAoUIvBw6Q%2F4AIB&sll=39.746353%2C43.604771&sspn=0.034791%2C0.021434&text=%D0%B0%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0&z=15.32"
+                        width="100%"
+                        height="400"
+                        frameBorder="0"
+                        allowFullScreen={true}
+                        style={{ position:'relative', borderRadius: '12px' }}
                       />
                     </div>
                   </div>
@@ -551,31 +549,31 @@ export default function Home() {
                     <p className={styles.mapCardDesc}>Что говорят клиенты на Яндекс.Картах</p>
                   </div>
                   <div className={styles.yandexReviewsContainer}>
-                    <div style={{width:"100%", height:"500px", overflow:"hidden", position:"relative"}}>
-                      <iframe 
-                        style={{width:"100%", height:"100%", border:"1px solid #e6e6e6", borderRadius:"12px", boxSizing:"border-box"}} 
+                    <div style={{ width:'100%', height:'500px', overflow:'hidden', position:'relative' }}>
+                      <iframe
+                        style={{ width:'100%', height:'100%', border:'1px solid #e6e6e6', borderRadius:'12px', boxSizing:'border-box' }}
                         src="https://yandex.ru/maps-reviews-widget/82146067837?comments"
                       />
-                      <a 
-                        href="https://yandex.ru/maps/org/youtool/82146067837/" 
-                        target="_blank" 
+                      <a
+                        href="https://yandex.ru/maps/org/youtool/82146067837/"
+                        target="_blank"
                         style={{
-                          boxSizing:"border-box",
-                          textDecoration:"none",
-                          color:"#b3b3b3",
-                          fontSize:"10px",
-                          fontFamily:"YS Text,sans-serif",
-                          padding:"0 20px",
-                          position:"absolute",
-                          bottom:"8px",
-                          width:"100%",
-                          textAlign:"center",
-                          left:"0",
-                          overflow:"hidden",
-                          textOverflow:"ellipsis",
-                          display:"block",
-                          maxHeight:"14px",
-                          whiteSpace:"nowrap"
+                          boxSizing:'border-box',
+                          textDecoration:'none',
+                          color:'#b3b3b3',
+                          fontSize:'10px',
+                          fontFamily:'YS Text,sans-serif',
+                          padding:'0 20px',
+                          position:'absolute',
+                          bottom:'8px',
+                          width:'100%',
+                          textAlign:'center',
+                          left:'0',
+                          overflow:'hidden',
+                          textOverflow:'ellipsis',
+                          display:'block',
+                          maxHeight:'14px',
+                          whiteSpace:'nowrap',
                         }}
                       >
                         YouTool на карте Сочи — Яндекс Карты
