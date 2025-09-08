@@ -52,10 +52,86 @@
   color: #fff;
   filter: drop-shadow(0 6px 18px rgba(0, 0, 0, .25));
   margin-bottom: 0.5rem;
+  perspective: 1000px;
+  text-align: center;
+}
+
+.heading span {
+  display: inline;
 }
 
 .accent {
   color: #f97316;
+  background: linear-gradient(45deg, #f97316, #ffb74a, #f97316);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s ease-in-out infinite;
+  text-shadow: 0 0 30px rgba(249, 115, 22, 0.5);
+  filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.3));
+  position: relative;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.sparkleText {
+  position: relative;
+  display: inline;
+}
+
+.sparkles {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #ffb74a 0%, #f97316 70%);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 6px #f97316,
+    0 0 12px #f97316,
+    0 0 18px #f97316;
+  opacity: 0.8;
+}
+
+.sparkle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 12px;
+  background: linear-gradient(0deg, transparent, #fff, transparent);
+  border-radius: 2px;
+}
+
+.sparkle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  width: 2px;
+  height: 12px;
+  background: linear-gradient(0deg, transparent, #fff, transparent);
+  border-radius: 2px;
 }
 
 .lead {
@@ -63,11 +139,55 @@
   font-size: 1.25rem;
   color: #fff;
   margin-bottom: 2rem;
+  line-height: 1.6;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+.lead span {
+  display: inline;
 }
 
 .brand {
   color: #f97316;
-  font-weight: 600;
+  font-weight: 700;
+  background: linear-gradient(45deg, #f97316, #ffb74a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.2));
+  animation: brandGlow 1.5s ease-out 1.6s forwards;
+}
+
+@keyframes brandGlow {
+  0% {
+    filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(249, 115, 22, 0.4));
+  }
+  100% {
+    filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.2));
+  }
+}
+
+.brand::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(45deg, #f97316, #ffb74a);
+  transform: scaleX(0);
+  transform-origin: center;
+  animation: underlineGrow 0.6s ease-out 1.5s forwards;
+}
+
+@keyframes underlineGrow {
+  to {
+    transform: scaleX(1);
+  }
 }
 
 .searchWrap {
@@ -165,17 +285,33 @@
 
 .statBox {
   text-align: center;
+  padding: 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(249, 115, 22, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.statBox:hover {
+  background: rgba(249, 115, 22, 0.1);
+  border-color: rgba(249, 115, 22, 0.4);
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.15);
 }
 
 .statVal {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.8rem;
+  font-weight: 800;
   color: #f97316;
+  text-shadow: 0 0 10px rgba(249, 115, 22, 0.3);
+  margin-bottom: 0.25rem;
 }
 
 .statLbl {
-  font-size: 0.8rem;
-  color: #4b5563;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
 }
 
 .particles svg {
@@ -399,51 +535,100 @@
   }
 }
 
-.testimonials {
+.maps {
   padding: 5rem 0;
+  background: linear-gradient(135deg, #f9fafb 0%, rgba(249, 115, 22, 0.02) 50%, #f9fafb 100%);
 }
 
-.testimonialsInner {
+.mapsInner {
   text-align: center;
 }
 
-.testimonialsTitle {
+.mapsTitle {
   font-size: 2.25rem;
   font-weight: 800;
   color: #1f2937;
   margin-bottom: 1rem;
+  position: relative;
 }
 
-.testimonialsSub {
+.mapsTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #f97316 0%, #ffb74a 100%);
+  border-radius: 2px;
+}
+
+.mapsSub {
   font-size: 1.125rem;
   color: #6b7280;
   margin-bottom: 3rem;
 }
 
-.testimonialCard {
+.yandexMapCard,
+.yandexReviewsCard {
   background: #ffffff !important;
   border-radius: 1.5rem !important;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05) !important;
-  border-left: 4px solid #f97316 !important;
+  box-shadow: 0 8px 32px rgba(249, 115, 22, 0.08) !important;
+  border: 2px solid transparent !important;
   height: 100% !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow: hidden !important;
+  position: relative !important;
 }
 
-.testimonialHead {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+.yandexMapCard::before,
+.yandexReviewsCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #f97316 0%, #ffb74a 100%);
+  transform: scaleX(1);
+  z-index: 1;
+}
+
+.yandexMapCard:hover,
+.yandexReviewsCard:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 20px 48px rgba(249, 115, 22, 0.15) !important;
+  border-color: rgba(249, 115, 22, 0.1) !important;
+}
+
+.yandexMapContainer,
+.yandexReviewsContainer {
+  margin-top: 1rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.mapCardContent {
+  padding: 1.5rem 1.5rem 1rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.mapCardTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
   margin-bottom: 1rem;
 }
 
-.testimonialName {
-  font-weight: 700;
-  color: #1f2937;
-}
-
-.testimonialText {
+.mapCardDesc {
   color: #6b7280;
-  font-style: italic;
-  text-align: left;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
 }
 
 .rate :global(.ant-rate-star-full .ant-rate-star-second) {
@@ -553,6 +738,28 @@
   }
 }
 
+@media (max-width: 768px) {
+  .yandexMapContainer iframe {
+    height: 300px !important;
+  }
+  
+  .yandexReviewsContainer > div {
+    height: 400px !important;
+  }
+  
+  .mapCardContent {
+    padding: 1rem;
+  }
+  
+  .mapCardTitle {
+    font-size: 1.25rem;
+  }
+  
+  .mapCardDesc {
+    font-size: 0.875rem;
+  }
+}
+
 @media (max-width: 560px) {
   .actions{
     justify-content: center;
@@ -568,5 +775,13 @@
   }
   .heading {
     font-size: 2.8rem;
+  }
+  
+  .yandexMapContainer iframe {
+    height: 250px !important;
+  }
+  
+  .yandexReviewsContainer > div {
+    height: 350px !important;
   }
 }
