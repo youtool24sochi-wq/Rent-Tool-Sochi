@@ -181,35 +181,23 @@ export default function CatalogDetail() {
     const header = 'С вами поделились инструментом:'
     const namePrice = [name, priceStr].filter(Boolean).join(' ')
     const text = [header, namePrice, url].filter(Boolean).join('\n')
-    const imgSrc = (catalog?.main_image || (catalog?.images && catalog.images[0])) ? `https://api.renttoolspeed.ru${catalog?.main_image || catalog?.images?.[0]}` : ''
+
+    if (app === 'whatsapp') {
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer')
+
+      return
+    }
 
     try {
       if (typeof navigator !== 'undefined' && 'share' in navigator) {
-        let files: File[] = []
-
-        if (imgSrc) {
-          try {
-            const res = await fetch(imgSrc)
-            const blob = await res.blob()
-            const fname = `tool.${(blob.type.split('/')[1] || 'jpg')}`
-
-            files = [new File([blob], fname, { type: blob.type || 'image/jpeg' })]
-          } catch {}
-        }
-        // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-        const can = (navigator as any).canShare ? (navigator as any).canShare(files.length ? { files } : {}) : true
-
-        await (navigator as any).share(files.length ? { text, files } : { text })
+        await (navigator as any).share({ text })
 
         return
       }
     } catch {}
-    if (app === 'whatsapp') {
-      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer')
-    } else {
-      window.open(`https://t.me/share/url?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer')
-    }
-  }, [catalog?.name, catalog?.tool_id, hasDiscount, finalPrice, basePrice, basePriceTrunc, catalog?.main_image, catalog?.images])
+
+    window.open(`https://t.me/share/url?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer')
+  }, [catalog?.name, catalog?.tool_id, hasDiscount, finalPrice, basePrice, basePriceTrunc])
 
   if (loading || !catalog) return <Loader />
 
