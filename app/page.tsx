@@ -10,6 +10,7 @@ import {
   ClockCircleOutlined,
   CustomerServiceOutlined,
   TagOutlined,
+  PhoneOutlined,
 } from '@ant-design/icons'
 import {
   Button,
@@ -294,8 +295,10 @@ export default function Home() {
 
             <Link href="/catalog">
               <button className={styles.btnGhost}>
-                <TagOutlined style={{ marginRight: 10 }} />
-                Акции
+                <PhoneOutlined style={{ marginRight: 10 }} />
+                <a href="tel:+89388742460">
+                  Связаться с нами
+                </a>
               </button>
             </Link>
           </motion.div>

@@ -67,14 +67,14 @@
 
 .accent {
   color: #f97316;
-  background: linear-gradient(45deg, #f97316, #ffb74a, #f97316);
-  background-size: 200% 200%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  /* background: linear-gradient(45deg, #f97316, #ffb74a, #f97316); */
+  /* background-size: 200% 200%; */
+  /* background-clip: text; */
+  /* -webkit-background-clip: text; */
+  /* -webkit-text-fill-color: transparent; */
   animation: gradientShift 3s ease-in-out infinite;
   text-shadow: 0 0 30px rgba(249, 115, 22, 0.5);
-  filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.3));
+  /* filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.3)); */
   position: relative;
 }
 
