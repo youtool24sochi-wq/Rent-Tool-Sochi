@@ -9,7 +9,6 @@ import {
   SafetyCertificateOutlined,
   ClockCircleOutlined,
   CustomerServiceOutlined,
-  TagOutlined,
   PhoneOutlined,
 } from '@ant-design/icons'
 import {
