@@ -292,12 +292,10 @@ export default function Home() {
               </button>
             </Link>
 
-            <Link href="/catalog">
+            <Link href="tel:+89388742460">
               <button className={styles.btnGhost}>
                 <PhoneOutlined style={{ marginRight: 10 }} />
-                <a href="tel:+89388742460">
-                  Связаться с нами
-                </a>
+                Связаться с нами
               </button>
             </Link>
           </motion.div>
