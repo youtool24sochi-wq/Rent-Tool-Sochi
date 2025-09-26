@@ -30,14 +30,14 @@ export const ButtonPopover = () => {
 
       <Flex gap={12} className={styles.links}>
         <Link
-          href="https://wa.me/78621234567"
+          href="https://wa.me/89996555139"
           target="_blank"
           className={styles.iconLink}
         >
           <WhatsAppOutlined />
         </Link>
         <Link
-          href="https://t.me/renttoolsochi"
+          href="https://t.me/YouToolSochi"
           target="_blank"
           className={styles.iconLink}
         >
