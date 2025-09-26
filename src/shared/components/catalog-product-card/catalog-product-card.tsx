@@ -52,14 +52,16 @@ function CatalogProductCard({ product, onAddToCart, onToggleFavorite, favPending
       {hasDiscount && <span className={styles.badgeRight}>-{Math.trunc(discountVal!)}%</span>}
 
       <div className={styles.thumbWrap}>
-        <Image
-          src={product.main_image ? `https://api.renttoolspeed.ru${product.main_image}` : 'https://renttoolspeed.ru/og/no-photo.png'}
-          alt={product.name}
-          fill
-          unoptimized
-          className={styles.thumbImg}
-          sizes="256px"
-        />
+        <Link href={`/catalog/${product.tool_id}`}>
+          <Image
+            src={product.main_image ? `https://api.renttoolspeed.ru${product.main_image}` : 'https://renttoolspeed.ru/og/no-photo.png'}
+            alt={product.name}
+            fill
+            unoptimized
+            className={styles.thumbImg}
+            sizes="256px"
+          />
+        </Link>
 
         <button
           type="button"
