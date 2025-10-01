@@ -99,7 +99,7 @@ export const Navbar = () => {
             </div>
 
             <div className={styles.socialGroup}>
-              <a href="https://wa.me/78621234567" className={`${styles.socialIcon} ${styles.iconWa}`}>
+              <a href="https://wa.me/79996555139" className={`${styles.socialIcon} ${styles.iconWa}`}>
                 <WhatsAppOutlined />
               </a>
               <a href="https://t.me/YouToolSochi" className={`${styles.socialIcon} ${styles.iconTg}`}>
@@ -234,12 +234,10 @@ export const Navbar = () => {
               </a>
             </div>
             <div className={styles.socialGroup} style={{ justifyContent: 'center' }}>
-              <a href="https://wa.me/78621234567" className={`${styles.socialIcon} ${styles.iconWa}`}>
+              <a href="https://wa.me/79996555139" className={`${styles.socialIcon} ${styles.iconWa}`} target="_blank">
                 <WhatsAppOutlined />
               </a>
-              <a href="https://t.me/YouToolSochi
-" className={`${styles.socialIcon} ${styles.iconTg}`}
-              >
+              <a href="https://t.me/YouToolSochi" className={`${styles.socialIcon} ${styles.iconTg}`} target="_blank">
                 <TelegramOutlined />
               </a>
             </div>
