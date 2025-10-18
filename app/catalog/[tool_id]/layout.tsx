@@ -1,19 +1,47 @@
-import { CatalogIdGET } from '@/services/catalog-api'
-
 import type { Metadata } from 'next'
 
-interface Props {
-  params: Promise<{ tool_id: string }>
-}
+export const revalidate = 0
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: { params: Promise<{ tool_id: string }> },
+): Promise<Metadata> {
   const { tool_id } = await params
-  const res = await CatalogIdGET(tool_id)
-  const data = res?.data || {}
-  const name = data?.name || 'Инструмент'
-  const price = data?.price_per_day != null ? `${Math.trunc(Number(data.price_per_day))} ₽/день` : 'Цена уточняется'
+
+  const apiRes = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/tools/${tool_id}/`,
+    { cache: 'no-store', method: 'GET' },
+  )
+
+  if (!apiRes.ok) {
+    const fallbackImg = 'https://renttoolspeed.ru/og/no-photo.png'
+
+    return {
+      title: 'Инструмент',
+      description: 'Аренда: Цена уточняется',
+      openGraph: { images: [{ url: fallbackImg }] },
+      twitter: { card: 'summary_large_image', images: [fallbackImg] },
+    }
+  }
+
+  const payload = await apiRes.json()
+
+  const tool = payload?.data ?? payload
+
+  const name: string = tool?.name ?? 'Инструмент'
+  const price: string =
+    tool?.price_per_day != null
+      ? `${Math.trunc(Number(tool.price_per_day))} ₽/день`
+      : 'Цена уточняется'
+
+  const firstImage: string | undefined =
+    tool?.main_image
+      ? `https://api.renttoolspeed.ru${tool.main_image}`
+      : Array.isArray(tool?.images) && tool.images.length > 0
+        ? `https://api.renttoolspeed.ru${tool.images[0]}`
+        : undefined
+
+  const img = firstImage ?? 'https://renttoolspeed.ru/og/no-photo.png'
   const url = `https://renttoolspeed.ru/catalog/${tool_id}`
-  const img: any = data?.main_image ? `https://api.renttoolspeed.ru${data.main_image}` : 'https://renttoolspeed.ru/og/no-photo.png'
 
   return {
     title: name,
