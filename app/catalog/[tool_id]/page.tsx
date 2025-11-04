@@ -34,6 +34,7 @@ export default function CatalogDetail() {
   const [isAdded, setIsAdded] = React.useState(false)
   const [isFavorite, setIsFavorite] = React.useState(false)
   const [favPending, setFavPending] = React.useState(false)
+  const [descExpanded, setDescExpanded] = React.useState(false)
 
   const basePrice = catalog?.price_per_day != null ? Number(catalog.price_per_day) : 0
   const finalPriceRaw = (catalog as any)?.final_price != null ? Number((catalog as any).final_price) : (catalog?.discount != null ? basePrice * (1 - Number(catalog.discount) / 100) : null)
@@ -148,9 +149,7 @@ export default function CatalogDetail() {
     try {
       setFavPending(true)
       if (isFavorite) {
-        const dataToSend = {
-          tool_id: String(tool_id),
-        }
+        const dataToSend = { tool_id: String(tool_id) }
         const res = await FavoriteDELETE(dataToSend)
 
         if (res?.status === 200 || res?.statusText === 'OK') {
@@ -187,7 +186,6 @@ export default function CatalogDetail() {
 
       return
     }
-
     try {
       if (typeof navigator !== 'undefined' && 'share' in navigator) {
         await (navigator as any).share({ text })
@@ -195,9 +193,23 @@ export default function CatalogDetail() {
         return
       }
     } catch {}
-
     window.open(`https://t.me/share/url?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer')
   }, [catalog?.name, catalog?.tool_id, hasDiscount, finalPrice, basePrice, basePriceTrunc])
+
+  const { descIsLong, descToShow, descFull } = React.useMemo(() => {
+    const d = catalog?.description?.toString().trim() || ''
+
+    if (!d) return { descIsLong: false, descToShow: '', descFull: '' }
+    const words = d.split(/\s+/).filter(Boolean)
+
+    if (words.length > 20) {
+      const short = words.slice(0, 20).join(' ') + '…'
+
+      return { descIsLong: true, descToShow: short, descFull: d }
+    }
+
+    return { descIsLong: false, descToShow: d, descFull: d }
+  }, [catalog?.description])
 
   if (loading || !catalog) return <Loader />
 
@@ -277,7 +289,21 @@ export default function CatalogDetail() {
               )}
             </div>
 
-            {catalog.description && <p className={styles.desc}>{catalog.description}</p>}
+            {descToShow && (
+              <div className={styles.descWrap}>
+                <p className={styles.desc}>{descExpanded ? descFull : descToShow}</p>
+                {descIsLong && (
+                  <Button
+                    type="link"
+                    size="small"
+                    className={styles.descToggle}
+                    onClick={() => setDescExpanded((v) => !v)}
+                  >
+                    {descExpanded ? 'Свернуть' : 'Показать полностью'}
+                  </Button>
+                )}
+              </div>
+            )}
 
             {specsObj && (
               <div className={styles.specs}>

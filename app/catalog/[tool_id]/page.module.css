@@ -209,6 +209,10 @@
   color:#f97316 !important;
 }
 
+.descToggle{
+  padding: 0px !important;
+}
+
 @media (max-width: 768px) {
   .title {
     font-size: 1.5rem;
