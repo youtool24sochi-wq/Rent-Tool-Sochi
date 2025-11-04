@@ -178,14 +178,14 @@ export default function CatalogDetail() {
     const priceStr = hasDiscount ? `${finalPrice} ₽/день` : (basePrice > 0 ? `${basePriceTrunc} ₽/день` : 'Цена уточняется')
     const url = catalog?.tool_id ? `https://renttoolspeed.ru/catalog/${catalog.tool_id}` : ''
     const header = 'С вами поделились инструментом:'
-    const namePrice = [name, priceStr].filter(Boolean).join(' ')
-    const text = [header, namePrice, url].filter(Boolean).join('\n')
+    const text = [header, name, priceStr, url].filter(Boolean).join('\n')
 
     if (app === 'whatsapp') {
       window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer')
 
       return
     }
+
     try {
       if (typeof navigator !== 'undefined' && 'share' in navigator) {
         await (navigator as any).share({ text })
@@ -193,6 +193,7 @@ export default function CatalogDetail() {
         return
       }
     } catch {}
+
     window.open(`https://t.me/share/url?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer')
   }, [catalog?.name, catalog?.tool_id, hasDiscount, finalPrice, basePrice, basePriceTrunc])
 
